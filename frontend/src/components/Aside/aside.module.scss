@@ -1,0 +1,103 @@
+.root {
+  height: 100vh;
+  background-color: #E1EFFF;
+  padding: 35px 32px 32px 32px;
+  max-width: 250px;
+  width: 100%;
+
+  .infoContainer {
+    display: grid;
+    grid-template-areas:
+      "img userInfo"
+      "img edit";
+    grid-template-columns: 25% 75%;
+
+    img {
+      grid-area: img;
+      width: 40px;
+      border-radius: 10px;
+    }
+
+    .userInfo {
+      grid-area: userInfo;
+      font-size: 16px;
+
+      span {
+        &:first-child {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .edit {
+      cursor: pointer;
+      grid-area: edit;
+      font-size: 13px;
+      color: #BABABA;
+      width: 70px;
+    }
+  }
+
+  .classificationElementsContainer {
+    margin-top: 30px;
+
+    ul {
+      li {
+        padding-left: 5px;
+
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        span {
+          padding: 5px 10px;
+          font-size: 20px;
+
+        }
+
+        .goalCount,
+        .rewardsCount,
+        .tasksCount {
+          border-radius: 8px;
+          color: #fff;
+          padding: 0 5px;
+          font-size: 13px;
+        }
+
+        .goalCount {
+          background-color: #3BCC8F;
+        }
+
+        .rewardsCount {
+          background-color: #CC9B3B;
+        }
+
+        .tasksCount {
+          background-color: #4A9EEB;
+        }
+
+
+        &:hover {
+          background-color: #4a9eeb30;
+          border-radius: 6px;
+        }
+
+        &:active {
+          background-color: #bdd9f330;
+          background-image: linear-gradient(#c0d6e5, #c2dcf3);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+
+.active {
+
+  li {
+    background-color: #4a9eeb30;
+    border-radius: 6px;
+  }
+
+}

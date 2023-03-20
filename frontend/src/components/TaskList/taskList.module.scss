@@ -1,0 +1,126 @@
+.root {
+  flex-grow: 5;
+  flex-basis: 0;
+  padding: 35px 35px 0 35px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 19px;
+
+    span {
+      font-size: 24px;
+    }
+
+    div {
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .inputContainer {
+
+    position: relative;
+    margin-bottom: 38px;
+
+    .plus {
+      position: absolute;
+      left: 15px;
+      top: 16px;
+    }
+
+    .cross {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+    }
+
+    .calendarContainer {
+      position: absolute;
+      top: 16px;
+      right: 110px;
+      width: 5px;
+      height: 5px;
+
+      .calendar {
+        position: absolute;
+        width: 18px;
+        color: #B7C8DB;
+      }
+
+      div {
+
+        border: none;
+        width: 16px;
+        opacity: .1;
+        outline: none;
+        position: absolute;
+        cursor: pointer;
+
+        input {
+          padding: 0;
+        }
+
+        * {
+          cursor: pointer;
+        }
+
+      }
+    }
+
+    .date {
+      position: absolute;
+      top: 10px;
+      font-size: 13px;
+      right: 100px;
+      background-color: #cfe6fd;
+      color: #4A9EEB;
+      padding: 6px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      svg {
+        width: 20px;
+
+        padding-right: 5px;
+      }
+
+      div {
+        cursor: pointer;
+
+        border: none;
+        width: 100%;
+        opacity: .1;
+        outline: none;
+        position: absolute;
+
+      }
+    }
+
+    &>input {
+      background-color: #F3FAFC;
+      border: none;
+      font-size: 16px;
+
+      padding: 14px 0 14px 40px;
+      border-radius: 8px;
+      width: 100%;
+      outline: none;
+
+      &::placeholder {
+        color: #B7C8DB;
+        font-size: 16px;
+      }
+
+      &:focus {
+        border: 1.5px solid #abd5fd;
+        background-color: #fff;
+        margin: -1px;
+      }
+    }
+  }
+}

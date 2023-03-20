@@ -1,0 +1,96 @@
+.root {
+  flex-grow: 3;
+  flex-basis: 0;
+  border-left: 1px solid #E1EFFF;
+  padding: 35px 45px 0 45px;
+
+  header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 25px;
+
+    div {
+      display: flex;
+      align-items: center;
+
+
+
+      .date {
+        background-color: #F1F1F1;
+        color: #9b9b9b;
+      }
+
+      .priority {
+        background-color: #F1F1F1;
+        color: #9b9b9b;
+        display: flex;
+        align-items: center;
+
+        .defaultPriority {
+          fill: #9b9b9b;
+
+        }
+      }
+
+      .category {
+
+        background-color: #F1F1F1;
+        color: #9b9b9b;
+
+      }
+    }
+
+    .date,
+    .priority,
+    .category {
+      margin-right: 13px;
+      border-radius: 6px;
+      padding: 6px 11px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .bin {
+      cursor: pointer;
+
+    }
+
+    .bin,
+    .date>svg,
+    .priority>svg,
+    .category>svg {
+      width: 25px;
+      height: 25px;
+      padding-right: 5px;
+    }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      border: none;
+      font-size: 20px;
+      padding-bottom: 8px;
+      flex-grow: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    textarea {
+      flex-grow: 1;
+      width: 100%;
+      height: auto;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #9b9b9b;
+      resize: none;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.root {
+  padding: 35px;
+  flex-grow: 4;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 38px;
+
+    span {
+      font-size: 24px;
+      font-weight: 0;
+      margin-right: 18px;
+    }
+
+    button {
+      display: inline-flex;
+      font-size: 16px;
+      background-color: #4A9EEB;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+
+      svg {
+        margin-right: 15px;
+      }
+
+      &:hover {
+        background-color: #3298f7a8;
+      }
+    }
+
+    div {
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+}

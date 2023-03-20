@@ -1,0 +1,78 @@
+label {
+  margin-right: 10px;
+  position: relative;
+
+  .bubble {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 10px;
+    display: block;
+    position: relative;
+
+    &:before {
+      content: "";
+      width: 0px;
+      height: 1.5px;
+      border-radius: 2px;
+      background: #c4c4c4;
+
+      position: absolute;
+      transform: rotate(45deg);
+      top: 9px;
+      left: 5px;
+      transition: width 50ms ease 50ms;
+      transform-origin: 0% 0%;
+    }
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 1.5px;
+      border-radius: 2px;
+      background: #c4c4c4;
+      position: absolute;
+      transform: rotate(305deg);
+      top: 13.5px;
+      left: 7px;
+      transition: width 50ms ease;
+      transform-origin: 0% 0%;
+    }
+  }
+
+  &:hover {
+    span {
+      &:before {
+        width: 5px;
+        transition: width 100ms ease;
+      }
+
+      &:after {
+        width: 10px;
+        transition: width 150ms ease 100ms;
+      }
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked~.bubble {
+    background-color: rgb(72, 113, 216);
+    border-color: rgb(72, 113, 216);
+
+    &:before {
+      width: 5px;
+      transition: width 100ms ease;
+      background: #fff;
+    }
+
+    &:after {
+      width: 10px;
+      transition: width 150ms ease 100ms;
+      background: #fff;
+    }
+  }
+}

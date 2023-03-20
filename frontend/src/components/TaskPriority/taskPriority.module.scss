@@ -1,0 +1,99 @@
+.defaultPriority {
+  position: absolute;
+  cursor: pointer;
+  top: 17px;
+  right: 40px;
+  width: 18px;
+  height: 18px;
+  fill: #b7c8db;
+
+}
+
+.defaultPriority.high {
+  path {
+    fill: #EB3F34;
+
+  }
+
+}
+
+.defaultPriority.medium {
+  path {
+    fill: #FF8A00;
+
+  }
+}
+
+.defaultPriority.low {
+  path {
+    fill: #11CCE5;
+
+  }
+}
+
+.priorityList {
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+  background-color: #F3FAFC;
+  width: 100%;
+  max-width: 120px;
+
+  ul {
+    .high {
+      color: #EB3F34;
+
+      svg {
+        fill: #EB3F34;
+      }
+
+      &:hover {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+
+      }
+    }
+
+    .medium {
+      color: #FF8A00;
+
+      svg {
+        fill: #FF8A00;
+      }
+
+    }
+
+    .low {
+      color: #11CCE5;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+
+      svg {
+        fill: #11CCE5;
+      }
+
+    }
+
+    .high,
+    .medium,
+    .low {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background-color: #E5F0F2;
+
+      }
+
+      svg {
+        margin-right: 5px;
+        width: 16px;
+      }
+    }
+
+  }
+}

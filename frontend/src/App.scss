@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Carlito";
+  src: url("./assets/fonts/carlito.regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Carlito";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+.App {
+  display: flex;
+
+
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop{
+  position: relative;
+  height: 0;
+}
+.MuiBackdrop-root, .MuiModal-backdrop , .css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop{
+  position: relative;
+
+}
+

@@ -1,0 +1,59 @@
+.defaultCategoryIcon {
+  position: absolute;
+  top: 15px;
+  right: 68px;
+  cursor: pointer;
+
+  path {
+    fill: #b7c8db;
+  }
+
+}
+
+.categoryList {
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+  background-color: #F3FAFC;
+  width: 100%;
+  max-width: 100px;
+  display: flex;
+
+  ul {
+    li {
+      padding: 8px 0 8px 15px;
+      display: inline-block;
+      max-width: 100px;
+      width: 100%;
+
+      &:hover {
+        background-color: #E5F0F2;
+      }
+
+      &:first-child {
+
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+}
+
+.active {
+  position: absolute;
+  top: 15px;
+  right: 68px;
+  cursor: pointer;
+
+  path {
+    fill: #4A9EEB;
+  }
+}

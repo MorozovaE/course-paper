@@ -1,0 +1,57 @@
+<svg
+width="22px"
+height="22px"
+viewBox="0 0 256 256"
+xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="none" height="22px" width="22px" />
+<polyline
+  fill="none"
+  points="144 168 184 208 224 168"
+  stroke="#000"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeWidth="16"
+/>
+<line
+  fill="none"
+  stroke="#000"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeWidth="16"
+  x1="184"
+  x2="184"
+  y1="112"
+  y2="208"
+/>
+<line
+  stroke="#000"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeWidth="16"
+  x1="48"
+  x2="120"
+  y1="128"
+  y2="128"
+/>
+<line
+  stroke="#000"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeWidth="16"
+  x1="48"
+  x2="184"
+  y1="64"
+  y2="64"
+/>
+<line
+  stroke="#000"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeWidth="16"
+  x1="48"
+  x2="104"
+  y1="192"
+  y2="192"
+/>
+</svg>

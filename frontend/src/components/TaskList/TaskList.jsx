@@ -79,7 +79,7 @@ export const TaskList = () => {
 
   React.useEffect(() => {
     getTasks();
-  }, []);
+  }, [items]);
 
   return (
     <div className={styles.root}>

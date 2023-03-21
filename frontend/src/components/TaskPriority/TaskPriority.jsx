@@ -16,8 +16,6 @@ export const TaskPriority = () => {
   const [priorities, setPrioryties] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
 
-
-  console.log(priorities);
   const dispatch = useDispatch();
   const priority = useSelector((state) => state.tasks.priority);
 

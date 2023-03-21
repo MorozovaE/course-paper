@@ -22,9 +22,10 @@ import {
 } from "../../store/features/tasksSlice";
 
 export const TaskList = () => {
+  const dispatch = useDispatch();
+
   const [items, setItems] = React.useState([]);
 
-  const dispatch = useDispatch();
   const dateTime = useSelector((state) => state.tasks.dateTime);
   const taskName = useSelector((state) => state.tasks.taskName);
   const priority = useSelector((state) => state.tasks.priority);

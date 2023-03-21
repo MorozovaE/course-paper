@@ -8,7 +8,11 @@ import { selectTask } from "../../store/features/tasksSlice";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 
 export const Task = ({ task }) => {
-  const priorityClasses = ["high", "medium", "low"];
+  const priorityClasses = {
+    1: "high",
+    2: "medium",
+    3: "low",
+  };
 
   const dispatch = useDispatch();
 
@@ -21,9 +25,7 @@ export const Task = ({ task }) => {
     >
       <div className={styles.taskContainer}>
         <Checkbox data={task} />
-        <input type="text" defaultValue={task.name} className={styles.text} />
-
-       
+        <input type="text" defaultValue={task.name} className={styles.text} />       
       </div>
 
       <div>
@@ -35,7 +37,7 @@ export const Task = ({ task }) => {
         <span className={styles.date}>{convertDateToStr(task.dateTime)}</span>
         {task.Priority !== null ? (
           <PriorityFlagIcon
-            className={styles[priorityClasses[task.Priority.id - 1]]}
+            className={styles[priorityClasses[task.Priority.id]]}
           />
         ) : (
           ""

@@ -33,32 +33,34 @@
         .priority {
           fill: #9b9b9b;
         }
-
       }
 
-        .high {
-          background-color: #F2E6E5;
-          color: #EB3F34;
-          path{
-            fill: #EB3F34;
-          }
-        }
-        .medium {
-          background-color: #F2F1E5;
-          color: #FF8A00;
-          path{
-            fill: #FF8A00;
-          }
-        }
-        .low {
-          background-color: #E5F0F2;
-          color: #11CCE5;
-          path{
-            fill: #11CCE5;
-          }
-        }
+      .high {
+        background-color: #F2E6E5;
+        color: #EB3F34;
 
+        path {
+          fill: #EB3F34;
+        }
+      }
 
+      .medium {
+        background-color: #F2F1E5;
+        color: #FF8A00;
+
+        path {
+          fill: #FF8A00;
+        }
+      }
+
+      .low {
+        background-color: #E5F0F2;
+        color: #11CCE5;
+
+        path {
+          fill: #11CCE5;
+        }
+      }
 
       .category {
         background-color: #F1F1F1;
@@ -70,12 +72,10 @@
     .defaultDate,
     .date,
     .defaultPriority,
-    .category ,
+    .category,
     .high,
     .medium,
-    .low
-
-    {
+    .low {
       margin-right: 13px;
       border-radius: 6px;
       padding: 6px 11px;
@@ -97,8 +97,7 @@
     .category>svg,
     .high>svg,
     .medium>svg,
-    .low>svg
-    {
+    .low>svg {
       width: 25px;
       height: 25px;
       padding-right: 5px;

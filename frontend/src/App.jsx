@@ -11,7 +11,7 @@ import { Aside } from "./components/Aside/Aside";
 function App() {
   return (
     <div className="App">
-      {/* <Aside /> */}
+      <Aside />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/tasks" element={<Tasks />} />

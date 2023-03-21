@@ -16,6 +16,8 @@ export const TaskPriority = () => {
   const [priorities, setPrioryties] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
 
+
+  console.log(priorities);
   const dispatch = useDispatch();
   const priority = useSelector((state) => state.tasks.priority);
 
@@ -46,7 +48,7 @@ export const TaskPriority = () => {
       {isOpen ? (
         <div className={styles.priorityList}>
           <ul>
-            {priorities.map((obj, i) => (
+            {priorities.map((obj) => (
               <li
                 key={obj["id"]}
                 className={styles[priorityClasses[obj.id]]}

@@ -12,6 +12,12 @@ import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
 
 export const TaskDetails = () => {
+  const priorityClasses = {
+    1: "high",
+    2: "medium",
+    3: "low",
+  };
+
   const selectedTaskId = useSelector((state) => state.tasks.id);
   const [task, setTask] = React.useState({});
 
@@ -36,15 +42,25 @@ export const TaskDetails = () => {
           <header>
             <div>
               <Checkbox task={task} />
-              <div className={styles.date}>
+              <div
+                className={
+                  task.dateTime == null ? styles.defaultDate : styles.date
+                }
+              >
                 <CalendarIcon />
                 <span>{convertDateToStr(task.dateTime)}</span>
               </div>
 
-              <div className={styles.priority}>
-                <PriorityFlagIcon className={styles.defaultPriority} />
-                {task.Priority && <span>{task.Priority.name}</span>}
-              </div>
+              {task.Priority ? (
+                <div className={styles[priorityClasses[task.Priority.id]]}>
+                  <PriorityFlagIcon />
+                  <span>{task.Priority.name}</span>
+                </div>
+              ) : (
+                <div className={styles.defaultPriority}>
+                  <PriorityFlagIcon className={styles.priority} />
+                </div>
+              )}
 
               <div className={styles.category}>
                 <CategoryIcon />

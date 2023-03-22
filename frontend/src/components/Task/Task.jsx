@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { selectTask } from "../../store/features/tasksSlice";
+import { selectTask, setDeletedTaskId } from "../../store/features/tasksSlice";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
 import axios from "axios";
@@ -18,10 +18,16 @@ export const Task = ({ task }) => {
     3: "low",
   };
 
-  const deleteTask = () => {
-    axios.delete(`http://localhost:3001/tasks/${task.id}`).then((response) => {
-      console.log(response);
-    });
+  const deleteHandler = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/tasks/${task.id}`
+      );
+
+      dispatch(setDeletedTaskId(response.data.id));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -52,7 +58,7 @@ export const Task = ({ task }) => {
         ) : (
           ""
         )}
-        <BinIcon className={styles.bin} onClick={() => deleteTask()} />
+        <BinIcon className={styles.bin} onClick={deleteHandler} />
       </div>
     </div>
   );

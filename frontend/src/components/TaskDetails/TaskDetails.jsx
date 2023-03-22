@@ -18,9 +18,12 @@ export const TaskDetails = () => {
     3: "low",
   };
 
+  const deletedTaskId = useSelector((state) => state.tasks.deletedTaskId);
   const selectedTaskId = useSelector((state) => state.tasks.id);
   const [task, setTask] = React.useState({});
 
+
+  console.log(deletedTaskId);
   const getTask = (id) => {
     axios.get(`http://localhost:3001/tasks/${id}`).then((response) => {
       setTask(response.data);

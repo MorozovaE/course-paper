@@ -6,6 +6,7 @@ const initialState = {
   taskName: "",
   priority: null,
   category: null,
+  deletedTaskId: null,
 };
 
 export const tasksSlice = createSlice({
@@ -27,6 +28,9 @@ export const tasksSlice = createSlice({
     setCategory(state, action) {
       state.category = action.payload;
     },
+    setDeletedTaskId(state,action){
+      state.deletedTaskId = action.payload;
+    }
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   setTaskName,
   setPriority,
   setCategory,
+  setDeletedTaskId,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

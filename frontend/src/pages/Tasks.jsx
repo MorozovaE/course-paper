@@ -6,7 +6,7 @@ export const Tasks = () => {
   return (
     <>
       <TaskList />
-      <TaskDetails />
+      {/* <TaskDetails /> */}
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
@@ -10,6 +9,7 @@ import styles from "./taskDetails.module.scss";
 import { useSelector } from "react-redux";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
+import { http } from "../../http-common";
 
 export const TaskDetails = () => {
   const priorityClasses = {
@@ -18,20 +18,18 @@ export const TaskDetails = () => {
     3: "low",
   };
 
-  const deletedTaskId = useSelector((state) => state.tasks.deletedTaskId);
   const selectedTaskId = useSelector((state) => state.tasks.id);
   const [task, setTask] = React.useState({});
 
-
-  console.log(deletedTaskId);
   const getTask = (id) => {
-    axios.get(`http://localhost:3001/tasks/${id}`).then((response) => {
+    http.get(`/tasks/${id}`).then((response) => {
       setTask(response.data);
     });
   };
 
   React.useEffect(() => {
     if (selectedTaskId) {
+      console.log("det");
       getTask(selectedTaskId);
     }
   }, [selectedTaskId]);

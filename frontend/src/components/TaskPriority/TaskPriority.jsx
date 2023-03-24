@@ -1,10 +1,10 @@
 import React from "react";
-import axios from "axios";
 
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setPriority } from "../../store/features/tasksSlice";
 import styles from "./taskPriority.module.scss";
+import { http } from "../../http-common";
 
 export const TaskPriority = () => {
   const priorityClasses = {
@@ -13,15 +13,15 @@ export const TaskPriority = () => {
     3: "low",
   };
 
-  const [priorities, setPrioryties] = React.useState([]);
+  const [priorities, setPriorities] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const dispatch = useDispatch();
   const priority = useSelector((state) => state.tasks.priority);
 
-  const getPrioryties = () => {
-    axios.get(`http://localhost:3001/priorities`).then((response) => {
-      setPrioryties(response.data);
+  const getPriorities = () => {
+    http.get(`/priorities`).then((response) => {
+      setPriorities(response.data);
     });
   };
 
@@ -31,7 +31,7 @@ export const TaskPriority = () => {
   };
 
   React.useEffect(() => {
-    getPrioryties();
+    getPriorities();
 
     const closeDropdown = (e) => {
       setIsOpen(false);
@@ -61,7 +61,7 @@ export const TaskPriority = () => {
       ) : (
         <div className={styles.priority}></div>
       )}
-      <PriorityFlagIcon 
+      <PriorityFlagIcon
         className={`${styles.defaultPriority} ${
           priority == undefined ? "" : styles[priorityClasses[priority]]
         }`}

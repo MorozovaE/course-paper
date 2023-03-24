@@ -1,30 +1,31 @@
 import React from "react";
 import styles from "./task.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { selectTask, setDeletedTaskId } from "../../store/features/tasksSlice";
+import { selectTask } from "../../store/features/tasksSlice";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
-import axios from "axios";
+import { http } from "../../http-common";
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
-
+  const selectedTaskId = useSelector((state) => state.tasks.id);
   const priorityClasses = {
     1: "high",
     2: "medium",
     3: "low",
   };
 
-  const deleteHandler = async () => {
+  const deleteHandler = async (e) => {
+    e.stopPropagation();
     try {
-      const response = await axios.delete(
-        `http://localhost:3001/tasks/${task.id}`
-      );
+      const response = await http.delete(`/tasks/${task.id}`);
 
-      dispatch(setDeletedTaskId(response.data.id));
+      if (selectedTaskId == response.data.id || task.id == response.data.id) {
+        dispatch(selectTask(null));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +59,7 @@ export const Task = ({ task }) => {
         ) : (
           ""
         )}
-        <BinIcon className={styles.bin} onClick={deleteHandler} />
+        <BinIcon className={styles.bin} onClick={(e) => deleteHandler(e)} />
       </div>
     </div>
   );

@@ -2,11 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   id: null,
+
+  // TODO delete
   dateTime: null,
-  taskName: "",
+
   priority: null,
   category: null,
-  deletedTaskId: null,
+
+  items: [],
 };
 
 export const tasksSlice = createSlice({
@@ -19,17 +22,15 @@ export const tasksSlice = createSlice({
     setDateTime: (state, action) => {
       state.dateTime = action.payload;
     },
-    setTaskName: (state, action) => {
-      state.taskName = action.payload;
-    },
+
     setPriority(state, action) {
       state.priority = action.payload;
     },
     setCategory(state, action) {
       state.category = action.payload;
     },
-    setDeletedTaskId(state,action){
-      state.deletedTaskId = action.payload;
+    setItems(state,action){
+      state.items = action.payload
     }
   },
 });
@@ -37,10 +38,9 @@ export const tasksSlice = createSlice({
 export const {
   selectTask,
   setDateTime,
-  setTaskName,
   setPriority,
   setCategory,
-  setDeletedTaskId,
+  setItems,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

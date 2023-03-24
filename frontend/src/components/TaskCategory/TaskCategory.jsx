@@ -1,10 +1,10 @@
 import React from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setCategory } from "../../store/features/tasksSlice";
 import styles from "./taskCategory.module.scss";
 import { ReactComponent as CategoryIcon } from "../../assets/icons/tasks.svg";
+import { http } from "../../http-common";
 
 export const TaskCategory = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -15,7 +15,7 @@ export const TaskCategory = () => {
 
 
   const getList = () => {
-    axios.get("http://localhost:3001/lists").then((response) => {
+    http.get("/lists").then((response) => {
       setList(response.data);
     });
   };

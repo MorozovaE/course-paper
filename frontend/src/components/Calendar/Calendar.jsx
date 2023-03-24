@@ -9,7 +9,6 @@ import { setDateTime } from "../../store/features/tasksSlice";
 
 export default function Calendar() {
   const dispatch = useDispatch();
-  const selectedDateTime = useSelector((state) => state.tasks.dateTie);
 
   const onChangeDate = (date) => {
     dispatch(setDateTime(convertDateToUnix(date)));
@@ -19,8 +18,8 @@ export default function Calendar() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <MobileDateTimePicker
         openTo="day"
-        defaultDate={selectedDateTime}
-        value={selectedDateTime}
+        defaultDate={null}
+        value={null}
         onAccept={(date) => onChangeDate(date)}
         sx={{
           width: { sm: 16, md: 16 },

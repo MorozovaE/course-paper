@@ -18,19 +18,23 @@ li {
 
 .App {
   display: flex;
-
-
+  height: 100vh;
+  overflow-y: hidden;
 }
-a{
+
+a {
   text-decoration: none;
   color: black;
 }
-.css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop{
+
+.css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop {
   position: relative;
   height: 0;
 }
-.MuiBackdrop-root, .MuiModal-backdrop , .css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop{
+
+.MuiBackdrop-root,
+.MuiModal-backdrop,
+.css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop {
   position: relative;
 
 }
-

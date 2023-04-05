@@ -9,12 +9,12 @@ import styles from "./taskDetails.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { http } from "../../http-common";
 import { getTask, selectedTaskIdSelector } from "../../store/features/tasksSlice";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
 
+  //ToDO
   const priorityClasses = {
     1: "high",
     2: "medium",
@@ -39,8 +39,8 @@ export const TaskDetails = () => {
 
       {selectedTaskId && (
         <div>
-          <header>
-            <div>
+          <header className={styles.headerContainer}>
+            <div >
               <Checkbox task={task} />
               <div
                 className={

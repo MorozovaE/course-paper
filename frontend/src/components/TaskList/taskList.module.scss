@@ -1,7 +1,28 @@
 .root {
   flex-grow: 5;
   flex-basis: 0;
-  padding: 35px 35px 0 35px;
+  padding: 35px 25px 0 35px;
 
+  .tasksContainer {
+    display: block;
+    overflow-y: scroll;
+    height: 84%;
+    padding-right: 10px;
+  }
+}
 
+::-webkit-scrollbar {
+  height: 1px;
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  padding-left: 10px;
+  margin-left: 10px;
+  background-color: #c4b5bf;
+  border-radius: 9em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #253861;
 }

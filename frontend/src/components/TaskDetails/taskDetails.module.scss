@@ -3,14 +3,17 @@
   flex-basis: 0;
   border-left: 1px solid #E1EFFF;
   padding: 35px 45px 0 45px;
+  box-sizing: border-box;
 
-  header {
+  .headerContainer {
+  
     align-items: center;
     display: flex;
     justify-content: space-between;
     padding-bottom: 25px;
 
     div {
+      font-size: 16px;
       display: flex;
       align-items: center;
 

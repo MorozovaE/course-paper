@@ -9,16 +9,12 @@ import { getAllTasks } from "../../store/features/tasksSlice";
 
 export const TaskList = () => {
   const dispatch = useDispatch();
-  
+
   const items = useSelector((state) => state.tasks.items);
 
   React.useEffect(() => {
-    dispatch(getAllTasks())
-  }, [])
-
-  // React.useEffect(() => {
-  //   getTasks();
-  // }, []);
+    dispatch(getAllTasks());
+  }, []);
 
   return (
     <div className={styles.root}>

@@ -6,7 +6,7 @@ import styles from "./taskListHeader.module.scss";
 
 export const TaskListHeader = () => {
   return (
-    <header>
+    <header className={styles.headerContainer}>
       <span>Задачи</span>
       <div>
         <SearchIcon />

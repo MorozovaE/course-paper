@@ -12,7 +12,17 @@ taskController.getTasks = (req, res, next) => {
 
 taskController.createTask = (req, res, next) => {
   Task.create(req.body)
-    .then((task) => res.json(task))
+    .then((task) =>
+      Task.findOne({ where: { id: task.id }, include: [Priority, List] }).then(
+        (task) => {
+          if (task) {
+            res.json(task);
+          } else {
+            res.status(404).send();
+          }
+        }
+      )
+    )
     .catch(next);
 };
 
@@ -34,7 +44,7 @@ taskController.editTask = (req, res, next) => {
   const newTask = req.body;
   const id = req.params.taskId;
 
-  Task.findOne({ where: { id } })
+  Task.findOne({ where: { id }, include: [Priority, List] })
     .then((task) => {
       if (task) {
         Object.assign(task, newTask);
@@ -53,7 +63,7 @@ taskController.editTask = (req, res, next) => {
 taskController.deleteTask = (req, res, next) => {
   const id = req.params.taskId;
 
-  Task.findOne({ where: { id } })
+  Task.findOne({ where: { id }, include: [Priority, List] })
     .then((task) => {
       if (task) {
         task.destroy().then(res.status(200).send(task)).catch(next);

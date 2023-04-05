@@ -14,7 +14,7 @@ import {
   setCategory,
   setDateTime,
   setPriority,
-  setItems
+  createTask
 } from "../../store/features/tasksSlice";
 
 export const TaskInput = () => {
@@ -26,26 +26,6 @@ export const TaskInput = () => {
 
   const inputRef = React.useRef();
 
-  const createTask = () => {
-    http
-      .post("/tasks", {
-        name: taskName,
-        completed: false,
-        dateTime: dateTime,
-        priorityId: priority,
-        listId: category,
-      })
-      .then((response) => {
-        getTasks();
-      });
-  };
-
-
-  const getTasks = () => {
-    http.get(`/tasks`).then((response) => {
-      dispatch(setItems(response.data.reverse()));
-    });
-  };
   const resetData = () => {
     setTaskName("");
     dispatch(setDateTime(null));
@@ -54,9 +34,14 @@ export const TaskInput = () => {
   };
 
   const addTask = () => {
-    createTask();
+    dispatch(createTask({
+      name: taskName,
+      completed: false,
+      dateTime: dateTime,
+      priorityId: priority,
+      listId: category
+    }))
     resetData();
-    getTasks();
   };
 
   const onClickClear = () => {
@@ -74,7 +59,7 @@ export const TaskInput = () => {
     }
   };
   React.useEffect(() => {
-    getTasks();
+    // getTasks();
   }, []);
   return (
     <div className={styles.inputContainer}>

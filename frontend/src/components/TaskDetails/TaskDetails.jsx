@@ -6,32 +6,31 @@ import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg"
 import { ReactComponent as CategoryIcon } from "../../assets/icons/category.svg";
 
 import styles from "./taskDetails.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { http } from "../../http-common";
+import { getTask, selectedTaskIdSelector } from "../../store/features/tasksSlice";
 
 export const TaskDetails = () => {
+  const dispatch = useDispatch();
+
   const priorityClasses = {
     1: "high",
     2: "medium",
     3: "low",
   };
 
-  const selectedTaskId = useSelector((state) => state.tasks.id);
+  const selectedTaskId = useSelector(selectedTaskIdSelector);
   const [task, setTask] = React.useState({});
-
-  const getTask = (id) => {
-    http.get(`/tasks/${id}`).then((response) => {
-      setTask(response.data);
-    });
-  };
 
   React.useEffect(() => {
     if (selectedTaskId) {
-      console.log("det");
-      getTask(selectedTaskId);
+      dispatch(getTask(selectedTaskId)).then((data) => {
+        setTask(data.payload);
+      })
     }
+    else setTask({})
   }, [selectedTaskId]);
 
   return (

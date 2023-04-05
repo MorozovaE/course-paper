@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { selectTask } from "../../store/features/tasksSlice";
+import { deleteTask, selectTask, selectedTaskIdSelector } from "../../store/features/tasksSlice";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
-import { http } from "../../http-common";
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
-  const selectedTaskId = useSelector((state) => state.tasks.id);
+  const selectedTaskId = useSelector(selectedTaskIdSelector)
   const priorityClasses = {
     1: "high",
     2: "medium",
@@ -20,20 +19,12 @@ export const Task = ({ task }) => {
 
   const deleteHandler = async (e) => {
     e.stopPropagation();
-    try {
-      const response = await http.delete(`/tasks/${task.id}`);
-
-      if (selectedTaskId == response.data.id || task.id == response.data.id) {
-        dispatch(selectTask(null));
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(deleteTask(task.id))
   };
 
   return (
     <div
-      className={styles.root}
+      className={`${styles.root} ${selectedTaskId == task.id ? styles.selected : ""}`}
       onClick={() => {
         dispatch(selectTask(task.id));
       }}

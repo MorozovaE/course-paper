@@ -5,12 +5,12 @@ import styles from "./taskList.module.scss";
 import { Task } from "../Task/Task";
 import { TaskInput } from "../TaskInput/TaskInput";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTasks } from "../../store/features/tasksSlice";
+import { getAllTasks, tasks } from "../../store/features/tasksSlice";
 
 export const TaskList = () => {
   const dispatch = useDispatch();
 
-  const items = useSelector((state) => state.tasks.items);
+  const items = useSelector(tasks);
 
   React.useEffect(() => {
     dispatch(getAllTasks());

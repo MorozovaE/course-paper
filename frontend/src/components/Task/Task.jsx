@@ -18,10 +18,6 @@ export const Task = ({ task }) => {
   const dispatch = useDispatch();
   const selectedTaskId = useSelector(selectedTaskIdSelector);
 
-  //selectors 
-  //rewrite
-  //toDO
-
   const deleteHandler = async (e) => {
     e.stopPropagation();
     dispatch(deleteTask(task.id));

@@ -1,23 +1,19 @@
 import React from "react";
 
+import { priorityClasses } from "../../constans";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setPriority } from "../../store/features/tasksSlice";
+import { setPriority, taskPriority } from "../../store/features/tasksSlice";
 import styles from "./taskPriority.module.scss";
 import { http } from "../../http-common";
 
 export const TaskPriority = () => {
-  const priorityClasses = {
-    1: "high",
-    2: "medium",
-    3: "low",
-  };
 
   const [priorities, setPriorities] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const dispatch = useDispatch();
-  const priority = useSelector((state) => state.tasks.priority);
+  const priority = useSelector(taskPriority);
 
   const getPriorities = () => {
     http.get(`/priorities`).then((response) => {

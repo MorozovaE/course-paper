@@ -22,7 +22,6 @@ export const getTask = createAsyncThunk("tasks/get", async (id) => {
 });
 
 export const createTask = createAsyncThunk("tasks/create", async (taskObj) => {
-  console.log(taskObj)
   const res = await taskDataService.createTask(taskObj);
   return res.data;
 });
@@ -32,12 +31,13 @@ export const deleteTask = createAsyncThunk("tasks/delete", async (id) => {
   return res.data;
 });
 
-export const editTask = createAsyncThunk("tasks/edit", async ({id, taskObj}) => {
-  console.log(id);
-  console.log(taskObj);
-  const res = await taskDataService.editTask(id, taskObj);
-  return res.data;
-});
+export const editTask = createAsyncThunk(
+  "tasks/edit",
+  async ({ id, taskObj }) => {
+    const res = await taskDataService.editTask(id, taskObj);
+    return res.data;
+  }
+);
 
 export const tasksSlice = createSlice({
   name: "tasks",
@@ -57,6 +57,7 @@ export const tasksSlice = createSlice({
     },
   },
   extraReducers: {
+    // qs or setTimeOut
     //toDo builder https://redux-toolkit.js.org/api/createAsyncThunk
     [getAllTasks.fulfilled]: (state, action) => {
       state.items = action.payload;
@@ -72,7 +73,9 @@ export const tasksSlice = createSlice({
       if (deletedId == state.selectedTaskId) state.selectedTaskId = null;
     },
     [editTask.fulfilled]: (state, action) => {
-      let index = state.items.findIndex((task) => task.id === action.payload.id);
+      let index = state.items.findIndex(
+        (task) => task.id === action.payload.id
+      );
 
       state.items[index] = {
         ...state.items[index],
@@ -83,6 +86,10 @@ export const tasksSlice = createSlice({
 });
 
 export const selectedTaskIdSelector = (state) => state.tasks.selectedTaskId;
+export const tasks = (state) => state.tasks.items;
+export const taskCategory = (state) => state.tasks.category;
+export const taskDateTime = (state) => state.tasks.dateTime;
+export const taskPriority = (state) => state.tasks.priority;
 
 export const { selectTask, setDateTime, setPriority, setCategory } =
   tasksSlice.actions;

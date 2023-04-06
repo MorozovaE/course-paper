@@ -6,13 +6,13 @@ import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg"
 import { ReactComponent as CategoryIcon } from "../../assets/icons/category.svg";
 
 import { priorityClasses } from "../../constans";
-
 import styles from "./taskDetails.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
 import {
   getTask,
+  tasks,
   selectedTaskIdSelector,
 } from "../../store/features/tasksSlice";
 
@@ -20,7 +20,7 @@ export const TaskDetails = () => {
   const dispatch = useDispatch();
 
   const selectedTaskId = useSelector(selectedTaskIdSelector);
-  const items = useSelector((state) => state.tasks.items);
+  const items = useSelector(tasks);
   //вынести task в redux
   const [task, setTask] = React.useState({});
 

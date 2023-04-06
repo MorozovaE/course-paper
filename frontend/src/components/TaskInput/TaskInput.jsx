@@ -14,16 +14,20 @@ import {
   setCategory,
   setDateTime,
   setPriority,
-  createTask
+  createTask,
+  taskDateTime,
+  taskCategory,
+  taskPriority,
 } from "../../store/features/tasksSlice";
 
 export const TaskInput = () => {
   const dispatch = useDispatch();
-  const dateTime = useSelector((state) => state.tasks.dateTime);
-  const [taskName, setTaskName] = React.useState("");
-  const priority = useSelector((state) => state.tasks.priority);
-  const category = useSelector((state) => state.tasks.category);
 
+  const dateTime = useSelector(taskDateTime);
+  const priority = useSelector(taskPriority);
+  const category = useSelector(taskCategory);
+
+  const [taskName, setTaskName] = React.useState("");
   const inputRef = React.useRef();
 
   const resetData = () => {
@@ -34,13 +38,15 @@ export const TaskInput = () => {
   };
 
   const addTask = () => {
-    dispatch(createTask({
-      name: taskName,
-      completed: false,
-      dateTime: dateTime,
-      priorityId: priority,
-      listId: category
-    }))
+    dispatch(
+      createTask({
+        name: taskName,
+        completed: false,
+        dateTime: dateTime,
+        priorityId: priority,
+        listId: category,
+      })
+    );
     resetData();
   };
 

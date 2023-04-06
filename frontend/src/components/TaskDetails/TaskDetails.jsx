@@ -5,33 +5,33 @@ import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
 import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg";
 import { ReactComponent as CategoryIcon } from "../../assets/icons/category.svg";
 
+import { priorityClasses } from "../../constans";
+
 import styles from "./taskDetails.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { getTask, selectedTaskIdSelector } from "../../store/features/tasksSlice";
+import {
+  getTask,
+  selectedTaskIdSelector,
+} from "../../store/features/tasksSlice";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
 
-  //ToDO
-  const priorityClasses = {
-    1: "high",
-    2: "medium",
-    3: "low",
-  };
-
   const selectedTaskId = useSelector(selectedTaskIdSelector);
+  const items = useSelector((state) => state.tasks.items);
+  //вынести task в redux
   const [task, setTask] = React.useState({});
 
+  //вынести это в fulfield
   React.useEffect(() => {
     if (selectedTaskId) {
       dispatch(getTask(selectedTaskId)).then((data) => {
         setTask(data.payload);
-      })
-    }
-    else setTask({})
-  }, [selectedTaskId]);
+      });
+    } else setTask({});
+  }, [selectedTaskId, items]);
 
   return (
     <div className={styles.root}>
@@ -40,7 +40,7 @@ export const TaskDetails = () => {
       {selectedTaskId && (
         <div>
           <header className={styles.headerContainer}>
-            <div >
+            <div>
               <Checkbox task={task} />
               <div
                 className={

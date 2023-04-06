@@ -2,36 +2,54 @@ import React from "react";
 import styles from "./task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
+import { priorityClasses } from "../../constans";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { deleteTask, selectTask, selectedTaskIdSelector } from "../../store/features/tasksSlice";
+import {
+  deleteTask,
+  editTask,
+  selectTask,
+  selectedTaskIdSelector,
+} from "../../store/features/tasksSlice";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
 import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
-  const selectedTaskId = useSelector(selectedTaskIdSelector)
-  const priorityClasses = {
-    1: "high",
-    2: "medium",
-    3: "low",
-  };
+  const selectedTaskId = useSelector(selectedTaskIdSelector);
+
+  //selectors 
+  //rewrite
+  //toDO
 
   const deleteHandler = async (e) => {
     e.stopPropagation();
-    dispatch(deleteTask(task.id))
+    dispatch(deleteTask(task.id));
+  };
+
+  const handleChange = (event) => {
+    dispatch(
+      editTask({ id: selectedTaskId, taskObj: { name: event.target.value } })
+    );
   };
 
   return (
     <div
-      className={`${styles.root} ${selectedTaskId == task.id ? styles.selected : ""}`}
+      className={`${styles.root} ${
+        selectedTaskId == task.id ? styles.selected : ""
+      }`}
       onClick={() => {
         dispatch(selectTask(task.id));
       }}
     >
       <div className={styles.taskContainer}>
         <Checkbox data={task} />
-        <input type="text" defaultValue={task.name} className={styles.text} />
+        <input
+          type="text"
+          defaultValue={task.name}
+          onChange={(event) => handleChange(event)}
+          className={styles.text}
+        />
       </div>
 
       <div className={styles.dataContainer}>

@@ -16,6 +16,9 @@ class TaskDataService {
   deleteById(id) {
     return http.delete(`/tasks/${id}`)
   }
+  editTask(id,taskObj) {
+    return http.put(`/tasks/${id}`,taskObj)
+  }
 }
 
 export const taskDataService = new TaskDataService();

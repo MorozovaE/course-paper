@@ -22,12 +22,20 @@ export const getTask = createAsyncThunk("tasks/get", async (id) => {
 });
 
 export const createTask = createAsyncThunk("tasks/create", async (taskObj) => {
+  console.log(taskObj)
   const res = await taskDataService.createTask(taskObj);
   return res.data;
 });
 
 export const deleteTask = createAsyncThunk("tasks/delete", async (id) => {
   const res = await taskDataService.deleteById(id);
+  return res.data;
+});
+
+export const editTask = createAsyncThunk("tasks/edit", async ({id, taskObj}) => {
+  console.log(id);
+  console.log(taskObj);
+  const res = await taskDataService.editTask(id, taskObj);
   return res.data;
 });
 
@@ -41,7 +49,6 @@ export const tasksSlice = createSlice({
     setDateTime: (state, action) => {
       state.dateTime = action.payload;
     },
-
     setPriority(state, action) {
       state.priority = action.payload;
     },
@@ -50,6 +57,7 @@ export const tasksSlice = createSlice({
     },
   },
   extraReducers: {
+    //toDo builder https://redux-toolkit.js.org/api/createAsyncThunk
     [getAllTasks.fulfilled]: (state, action) => {
       state.items = action.payload;
     },
@@ -62,6 +70,14 @@ export const tasksSlice = createSlice({
       state.items.splice(index, 1);
 
       if (deletedId == state.selectedTaskId) state.selectedTaskId = null;
+    },
+    [editTask.fulfilled]: (state, action) => {
+      let index = state.items.findIndex((task) => task.id === action.payload.id);
+
+      state.items[index] = {
+        ...state.items[index],
+        ...action.payload,
+      };
     },
   },
 });

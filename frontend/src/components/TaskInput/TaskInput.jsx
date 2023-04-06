@@ -2,7 +2,6 @@ import React from "react";
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus.svg";
 import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg";
 import { ReactComponent as ClearIcon } from "../../assets/icons/cross.svg";
-import { http } from "../../http-common";
 import styles from "./taskInput.module.scss";
 
 import Calendar from "../Calendar/Calendar";
@@ -64,9 +63,7 @@ export const TaskInput = () => {
       addTask();
     }
   };
-  React.useEffect(() => {
-    // getTasks();
-  }, []);
+
   return (
     <div className={styles.inputContainer}>
       <PlusIcon onClick={addTask} className={styles.plus} fill="#B7C8DB" />

@@ -1,4 +1,6 @@
 import React from "react";
+import debounce from "lodash.debounce";
+
 import styles from "./task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,11 +25,11 @@ export const Task = ({ task }) => {
     dispatch(deleteTask(task.id));
   };
 
-  const handleChange = (event) => {
+  const handleChange = debounce((event) => {
     dispatch(
       editTask({ id: selectedTaskId, taskObj: { name: event.target.value } })
     );
-  };
+  }, 1500);
 
   return (
     <div

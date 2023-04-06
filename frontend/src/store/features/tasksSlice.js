@@ -57,7 +57,7 @@ export const tasksSlice = createSlice({
     },
   },
   extraReducers: {
-    // qs or setTimeOut
+    // qs 
     //toDo builder https://redux-toolkit.js.org/api/createAsyncThunk
     [getAllTasks.fulfilled]: (state, action) => {
       state.items = action.payload;
@@ -76,7 +76,6 @@ export const tasksSlice = createSlice({
       let index = state.items.findIndex(
         (task) => task.id === action.payload.id
       );
-
       state.items[index] = {
         ...state.items[index],
         ...action.payload,

@@ -56,31 +56,31 @@ export const tasksSlice = createSlice({
       state.category = action.payload;
     },
   },
-  extraReducers: {
-    // qs 
-    //toDo builder https://redux-toolkit.js.org/api/createAsyncThunk
-    [getAllTasks.fulfilled]: (state, action) => {
-      state.items = action.payload;
-    },
-    [createTask.fulfilled]: (state, action) => {
-      state.items.push(action.payload);
-    },
-    [deleteTask.fulfilled]: (state, action) => {
-      let deletedId = action.payload.id;
-      let index = state.items.findIndex(({ id }) => id === deletedId);
-      state.items.splice(index, 1);
+  extraReducers: (builder) => {
+    // qs
+    builder
+      .addCase(getAllTasks.fulfilled, (state, action) => {
+        state.items = action.payload;
+      })
+      .addCase(createTask.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        let deletedId = action.payload.id;
+        let index = state.items.findIndex(({ id }) => id === deletedId);
+        state.items.splice(index, 1);
 
-      if (deletedId == state.selectedTaskId) state.selectedTaskId = null;
-    },
-    [editTask.fulfilled]: (state, action) => {
-      let index = state.items.findIndex(
-        (task) => task.id === action.payload.id
-      );
-      state.items[index] = {
-        ...state.items[index],
-        ...action.payload,
-      };
-    },
+        if (deletedId == state.selectedTaskId) state.selectedTaskId = null;
+      })
+      .addCase(editTask.fulfilled, (state, action) => {
+        let index = state.items.findIndex(
+          (task) => task.id === action.payload.id
+        );
+        state.items[index] = {
+          ...state.items[index],
+          ...action.payload,
+        };
+      });
   },
 });
 

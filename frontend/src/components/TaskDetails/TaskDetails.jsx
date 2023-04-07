@@ -14,23 +14,19 @@ import {
   getTask,
   tasksSelector,
   selectedTaskIdSelector,
+  taskSelector,
+  setTask,
 } from "../../store/features/tasksSlice";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
 
+  const task = useSelector(taskSelector);
   const selectedTaskId = useSelector(selectedTaskIdSelector);
   const items = useSelector(tasksSelector);
-  //вынести task в redux
-  const [task, setTask] = React.useState({});
 
-  //вынести это в fulfield
   React.useEffect(() => {
-    if (selectedTaskId) {
-      dispatch(getTask(selectedTaskId)).then((data) => {
-        setTask(data.payload);
-      });
-    } else setTask({});
+    selectedTaskId ? dispatch(getTask(selectedTaskId)) : setTask({});
   }, [selectedTaskId, items]);
 
   return (

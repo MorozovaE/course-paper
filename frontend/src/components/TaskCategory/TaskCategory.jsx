@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setCategory, taskCategory } from "../../store/features/tasksSlice";
+import { setCategory, categorySelector } from "../../store/features/tasksSlice";
 import styles from "./taskCategory.module.scss";
 import { ReactComponent as CategoryIcon } from "../../assets/icons/tasks.svg";
 import { http } from "../../http-common";
@@ -11,8 +11,7 @@ export const TaskCategory = () => {
   const [list, setList] = React.useState([]);
 
   const dispatch = useDispatch();
-  const category = useSelector(taskCategory);
-
+  const category = useSelector(categorySelector);
 
   const getList = () => {
     http.get("/lists").then((response) => {

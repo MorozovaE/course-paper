@@ -58,6 +58,7 @@ export const tasksSlice = createSlice({
   },
   extraReducers: (builder) => {
     // qs
+    //complete task!
     builder
       .addCase(getAllTasks.fulfilled, (state, action) => {
         state.items = action.payload;
@@ -85,10 +86,10 @@ export const tasksSlice = createSlice({
 });
 
 export const selectedTaskIdSelector = (state) => state.tasks.selectedTaskId;
-export const tasks = (state) => state.tasks.items;
-export const taskCategory = (state) => state.tasks.category;
-export const taskDateTime = (state) => state.tasks.dateTime;
-export const taskPriority = (state) => state.tasks.priority;
+export const tasksSelector = (state) => state.tasks.items;
+export const categorySelector = (state) => state.tasks.category;
+export const dateTimeSelector = (state) => state.tasks.dateTime;
+export const prioritySelector = (state) => state.tasks.priority;
 
 export const { selectTask, setDateTime, setPriority, setCategory } =
   tasksSlice.actions;

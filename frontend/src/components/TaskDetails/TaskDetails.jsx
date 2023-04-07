@@ -12,7 +12,7 @@ import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
 import {
   getTask,
-  tasks,
+  tasksSelector,
   selectedTaskIdSelector,
 } from "../../store/features/tasksSlice";
 
@@ -20,7 +20,7 @@ export const TaskDetails = () => {
   const dispatch = useDispatch();
 
   const selectedTaskId = useSelector(selectedTaskIdSelector);
-  const items = useSelector(tasks);
+  const items = useSelector(tasksSelector);
   //вынести task в redux
   const [task, setTask] = React.useState({});
 

@@ -14,17 +14,17 @@ import {
   setDateTime,
   setPriority,
   createTask,
-  taskDateTime,
-  taskCategory,
-  taskPriority,
+  dateTimeSelector,
+  categorySelector,
+  prioritySelector,
 } from "../../store/features/tasksSlice";
 
 export const TaskInput = () => {
   const dispatch = useDispatch();
 
-  const dateTime = useSelector(taskDateTime);
-  const priority = useSelector(taskPriority);
-  const category = useSelector(taskCategory);
+  const dateTime = useSelector(dateTimeSelector);
+  const priority = useSelector(prioritySelector);
+  const category = useSelector(categorySelector);
 
   const [taskName, setTaskName] = React.useState("");
   const inputRef = React.useRef();

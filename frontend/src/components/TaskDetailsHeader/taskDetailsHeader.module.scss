@@ -1,0 +1,101 @@
+.headerContainer {
+
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 25px;
+
+  div {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+
+    .date {
+      background-color: #cfe6fd;
+      color: #4A9EEB;
+    }
+
+    .defaultDate {
+      background-color: #F1F1F1;
+      color: #9b9b9b;
+    }
+
+    .defaultPriority {
+      background-color: #F1F1F1;
+      color: #9b9b9b;
+      display: flex;
+      align-items: center;
+
+      .priority {
+        fill: #9b9b9b;
+      }
+    }
+
+    .high {
+      background-color: #F2E6E5;
+      color: #EB3F34;
+
+      path {
+        fill: #EB3F34;
+      }
+    }
+
+    .medium {
+      background-color: #F2F1E5;
+      color: #FF8A00;
+
+      path {
+        fill: #FF8A00;
+      }
+    }
+
+    .low {
+      background-color: #E5F0F2;
+      color: #11CCE5;
+
+      path {
+        fill: #11CCE5;
+      }
+    }
+
+    .category {
+      background-color: #F1F1F1;
+      color: #9b9b9b;
+
+    }
+  }
+
+  .defaultDate,
+  .date,
+  .defaultPriority,
+  .category,
+  .high,
+  .medium,
+  .low {
+    margin-right: 13px;
+    border-radius: 6px;
+    padding: 6px 11px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .bin {
+    cursor: pointer;
+
+  }
+
+  .bin,
+  .date>svg,
+  .defaultDate>svg,
+  .defaultPriority>svg,
+  .priority>svg,
+  .category>svg,
+  .high>svg,
+  .medium>svg,
+  .low>svg {
+    width: 25px;
+    height: 25px;
+    padding-right: 5px;
+  }
+}

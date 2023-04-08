@@ -4,6 +4,7 @@ import { taskDataService } from "../../services/task.service.js";
 const initialState = {
   task: {},
   selectedTaskId: null,
+  completed: null,
   dateTime: null,
   priority: null,
   category: null,
@@ -12,7 +13,7 @@ const initialState = {
 
 export const getAllTasks = createAsyncThunk("tasks/getAll", async () => {
   const res = await taskDataService.getAll();
-  return res.data;
+  return res.data.reverse();
 });
 export const createTask = createAsyncThunk("tasks/create", async (taskObj) => {
   const res = await taskDataService.createTask(taskObj);
@@ -41,7 +42,7 @@ export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    setTask: (state, action) => {
+    setSelectedTask: (state, action) => {
       state.task = action.payload;
     },
     selectTask: (state, action) => {
@@ -56,10 +57,12 @@ export const tasksSlice = createSlice({
     setCategory(state, action) {
       state.category = action.payload;
     },
+    setCompleted(state, action) {
+      state.completed = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // qs
-    //complete task!
     builder
       .addCase(getAllTasks.fulfilled, (state, action) => {
         state.items = action.payload;
@@ -83,9 +86,9 @@ export const tasksSlice = createSlice({
           ...action.payload,
         };
       })
-      .addCase(getTask.fulfilled,(state,action) => {
-        state.task = action.payload
-      })
+      .addCase(getTask.fulfilled, (state, action) => {
+        state.task = action.payload;
+      });
   },
 });
 
@@ -95,8 +98,15 @@ export const tasksSelector = (state) => state.tasks.items;
 export const categorySelector = (state) => state.tasks.category;
 export const dateTimeSelector = (state) => state.tasks.dateTime;
 export const prioritySelector = (state) => state.tasks.priority;
+export const completedSelector = (state) => state.tasks.completed;
 
-export const { selectTask, setTask, setDateTime, setPriority, setCategory } =
-  tasksSlice.actions;
+export const {
+  selectTask,
+  setCompleted,
+  setSelectedTask,
+  setDateTime,
+  setPriority,
+  setCategory,
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

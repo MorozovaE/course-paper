@@ -15,7 +15,7 @@ import {
   tasksSelector,
   selectedTaskIdSelector,
   taskSelector,
-  setTask,
+  setSelectedTask,
 } from "../../store/features/tasksSlice";
 
 export const TaskDetails = () => {
@@ -26,7 +26,9 @@ export const TaskDetails = () => {
   const items = useSelector(tasksSelector);
 
   React.useEffect(() => {
-    selectedTaskId ? dispatch(getTask(selectedTaskId)) : setTask({});
+    selectedTaskId
+      ? dispatch(getTask(selectedTaskId))
+      : dispatch(setSelectedTask({}));
   }, [selectedTaskId, items]);
 
   return (

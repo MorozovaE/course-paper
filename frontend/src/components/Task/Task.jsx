@@ -29,7 +29,7 @@ export const Task = ({ task }) => {
     dispatch(
       editTask({ id: selectedTaskId, taskObj: { name: event.target.value } })
     );
-  }, 1500);
+  }, 1000);
 
   return (
     <div
@@ -41,7 +41,7 @@ export const Task = ({ task }) => {
       }}
     >
       <div className={styles.taskContainer}>
-        <Checkbox data={task} />
+        <Checkbox task={task} />
         <input
           type="text"
           defaultValue={task.name}

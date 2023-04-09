@@ -20,15 +20,15 @@ export const Goal = () => {
         <h2>Следующие задачи:</h2>
         <ul>
           <li>
-            <Checkbox />
+            {/* <Checkbox /> */}
             <span>Text1</span>
           </li>
           <li>
-            <Checkbox />
+            {/* <Checkbox /> */}
             <span>Text2</span>
           </li>
           <li>
-            <Checkbox />
+            {/* <Checkbox /> */}
             <span>Text3</span>
           </li>
         </ul>

@@ -68,7 +68,7 @@ export const tasksSlice = createSlice({
         state.items = action.payload;
       })
       .addCase(createTask.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.items.unshift(action.payload);
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
         let deletedId = action.payload.id;

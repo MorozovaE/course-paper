@@ -6,6 +6,7 @@ import { taskSelector } from "../../store/features/tasksSlice";
 
 export const TaskDetailsMain = () => {
   const task = useSelector(taskSelector);
+  
   return (
     <main>
       <input type="text" defaultValue={task.name} />

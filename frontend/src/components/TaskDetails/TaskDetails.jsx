@@ -10,7 +10,11 @@ import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg"
 import { priorityClasses } from "../../constans";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { editTask, taskSelector } from "../../store/features/tasksSlice";
+import {
+  deleteTask,
+  editTask,
+  taskSelector,
+} from "../../store/features/tasksSlice";
 import {
   getTask,
   tasksSelector,
@@ -45,6 +49,12 @@ export const TaskDetails = () => {
       editTask({ id: selectedTask.id, taskObj: { priorityId: priorityId } })
     );
   };
+
+  const deleteHandler = async (e) => {
+    // e.stopPropagation();
+    dispatch(deleteTask(selectedTaskId));
+  };
+
   return (
     <div className={styles.root}>
       {!selectedTaskId && <div>Нажмите на задачу!!!</div>}
@@ -71,19 +81,6 @@ export const TaskDetails = () => {
                 defaultValue={selectedTask.listId}
                 type="long"
               />
-
-              {/* {selectedTask.Priority ? (
-                <div
-                  className={styles[priorityClasses[selectedTask.Priority.id]]}
-                >
-                  <PriorityFlagIcon />
-                  <span>{selectedTask.Priority.name}</span>
-                </div>
-              ) : (
-                <div className={styles.defaultPriority}>
-                  <PriorityFlagIcon className={styles.priority} />
-                </div>
-              )} */}
               <TaskPriority
                 onChangeValue={setPriority}
                 defaultValue={selectedTask.priorityId}
@@ -91,7 +88,10 @@ export const TaskDetails = () => {
               />
             </div>
 
-            <BinIcon className={styles.bin} />
+            <BinIcon
+              onClick={() => dispatch(deleteTask(selectedTaskId))}
+              className={styles.bin}
+            />
           </header>
           <main>
             <input type="text" defaultValue={selectedTask.name} />

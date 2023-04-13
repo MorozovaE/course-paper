@@ -1,20 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { setCategory, categorySelector } from "../../store/features/tasksSlice";
 import styles from "./taskCategory.module.scss";
 import { ReactComponent as CategoryIcon } from "../../assets/icons/tasks.svg";
-import { http } from "../../http-common";
+import { taskDataService } from "../../services/task.service";
 
-export const TaskCategory = () => {
+export const TaskCategory = ({ onChangeValue, defaultValue, type }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [list, setList] = React.useState([]);
 
-  const dispatch = useDispatch();
-  const category = useSelector(categorySelector);
-
   const getList = () => {
-    http.get("/lists").then((response) => {
+    taskDataService.getCategoryList().then((response) => {
       setList(response.data);
     });
   };
@@ -36,12 +30,12 @@ export const TaskCategory = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.root}>
       {isOpen ? (
         <div className={styles.categoryList}>
           <ul>
             {list.map((obj, i) => (
-              <li key={i} onClick={() => dispatch(setCategory(obj["id"]))}>
+              <li key={i} onClick={() => onChangeValue(obj["id"])}>
                 {obj.name}
               </li>
             ))}
@@ -50,12 +44,22 @@ export const TaskCategory = () => {
       ) : (
         <div className={styles.category}></div>
       )}
-      <CategoryIcon
-        className={
-          category == null ? styles.defaultCategoryIcon : styles.active
-        }
-        onClick={(e) => showList(e)}
-      />
-    </>
+
+      {type == "short" && (
+        <CategoryIcon
+          className={
+            `${styles.categoryIcon} ${defaultValue == null ? styles.default : styles.active}`
+          }
+          onClick={(e) => showList(e)}
+        />
+      )}
+
+      {type == "long" && (
+        <div className={styles.categoryContainer} onClick={(e) => showList(e)}>
+          <CategoryIcon />
+          <span>{defaultValue && list[defaultValue - 1].name}</span>
+        </div>
+      )}
+    </div>
   );
 };

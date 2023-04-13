@@ -1,33 +1,31 @@
-.defaultCategoryIcon {
-  position: absolute;
-  top: 15px;
-  right: 68px;
-  cursor: pointer;
+.root {
+  position: relative;
+  margin: 0 3px;
 
-  path {
-    fill: #b7c8db;
+  svg {
+    width: 22px;
+    height: 22px;
+    display: block;
   }
 
-}
-
 .categoryList {
+  position: absolute;
+  right: 0;
+  top: 100%;
   border-radius: 8px;
   cursor: pointer;
   transition-duration: 0.2s;
   margin-top: 10px;
-  position: absolute;
-  right: 0;
   background-color: #F3FAFC;
-  width: 100%;
-  max-width: 100px;
-  display: flex;
-
+  box-shadow: 0 5px 10px 0 rgba(119, 119, 119, 0.202);
+  
   ul {
     li {
-      padding: 8px 0 8px 15px;
+      padding: 8px 15px 8px 15px;
       display: inline-block;
       max-width: 100px;
       width: 100%;
+      background-color: #F3FAFC;
 
       &:hover {
         background-color: #E5F0F2;
@@ -47,13 +45,37 @@
   }
 }
 
-.active {
-  position: absolute;
-  top: 15px;
-  right: 68px;
+.categoryIcon {
   cursor: pointer;
 
-  path {
-    fill: #4A9EEB;
+  &.default {
+    path {
+      fill: #b7c8db;
+    }
   }
+
+  &.active {
+    path {
+      fill: #4A9EEB;
+    }
+  }
+}
+
+.categoryContainer {
+  margin-right: 13px;
+  border-radius: 6px;
+  padding: 6px 11px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #F1F1F1;
+  color: #9b9b9b;
+
+
+  svg {
+    width: 25px;
+    height: 25px;
+    padding-right: 5px;
+  }
+}
 }

@@ -2,25 +2,19 @@ import React from "react";
 
 import { priorityClasses } from "../../constans";
 import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { setPriority, prioritySelector } from "../../store/features/tasksSlice";
 import styles from "./taskPriority.module.scss";
-import { http } from "../../http-common";
+import { taskDataService } from "../../services/task.service";
 
-export const TaskPriority = () => {
-
+export const TaskPriority = ({ onChangeValue, defaultValue, type }) => {
   const [priorities, setPriorities] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const dispatch = useDispatch();
-  const priority = useSelector(prioritySelector);
-
   const getPriorities = () => {
-    http.get(`/priorities`).then((response) => {
+    taskDataService.getPriorities().then((response) => {
       setPriorities(response.data);
     });
   };
-
+  
   const showPriority = (e) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
@@ -38,7 +32,7 @@ export const TaskPriority = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.root}>
       {isOpen ? (
         <div className={styles.priorityList}>
           <ul>
@@ -46,7 +40,7 @@ export const TaskPriority = () => {
               <li
                 key={obj["id"]}
                 className={styles[priorityClasses[obj.id]]}
-                onClick={() => dispatch(setPriority(obj["id"]))}
+                onClick={() => onChangeValue(obj["id"])}
               >
                 <PriorityFlagIcon />
                 <span>{obj.name}</span>
@@ -57,12 +51,28 @@ export const TaskPriority = () => {
       ) : (
         <div className={styles.priority}></div>
       )}
-      <PriorityFlagIcon
-        className={`${styles.defaultPriority} ${
-          priority == undefined ? "" : styles[priorityClasses[priority]]
-        }`}
-        onClick={(e) => showPriority(e)}
-      />
-    </>
+
+      {type == "short" && (
+        <PriorityFlagIcon
+          className={`${styles.defaultPriority} ${
+            defaultValue == undefined
+              ? ""
+              : styles[priorityClasses[defaultValue]]
+          }`}
+          onClick={(e) => showPriority(e)}
+        />
+      )}
+
+      {type == "long" && (
+        <div
+          className={defaultValue ? `${styles.longContainer} ${styles[priorityClasses[defaultValue]]}` : styles.longDefault }
+          onClick={(e) => showPriority(e)}
+        >
+          <PriorityFlagIcon />
+          <span>{priorities[defaultValue - 1] && priorities[defaultValue - 1].name} </span>
+        </div>
+      )}
+    
+    </div>
   );
 };

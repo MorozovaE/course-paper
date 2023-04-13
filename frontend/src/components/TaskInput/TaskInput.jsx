@@ -5,35 +5,27 @@ import { ReactComponent as ClearIcon } from "../../assets/icons/cross.svg";
 import styles from "./taskInput.module.scss";
 
 import Calendar from "../Calendar/Calendar";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { TaskPriority } from "../TaskPriority/TaskPriority";
 import { TaskCategory } from "../TaskCategory/TaskCategory";
 import { convertDateToStr } from "../../utils/convetDateToStr";
-import {
-  setCategory,
-  setDateTime,
-  setPriority,
-  createTask,
-  dateTimeSelector,
-  categorySelector,
-  prioritySelector,
-} from "../../store/features/tasksSlice";
+import { createTask } from "../../store/features/tasksSlice";
 
 export const TaskInput = () => {
   const dispatch = useDispatch();
 
-  const dateTime = useSelector(dateTimeSelector);
-  const priority = useSelector(prioritySelector);
-  const category = useSelector(categorySelector);
-
   const [taskName, setTaskName] = React.useState("");
+  const [dateTime, setDateTime] = React.useState(null);
+  const [category, setCategory] = React.useState(null);
+  const [priority, setPriority] = React.useState(null);
+
   const inputRef = React.useRef();
 
   const resetData = () => {
     setTaskName("");
-    dispatch(setDateTime(null));
-    dispatch(setPriority(null));
-    dispatch(setCategory(null));
+    setDateTime(null);
+    setPriority(null);
+    setCategory(null);
   };
 
   const addTask = () => {
@@ -67,7 +59,9 @@ export const TaskInput = () => {
   return (
     <div className={styles.inputContainer}>
       <PlusIcon onClick={addTask} className={styles.plus} fill="#B7C8DB" />
+
       <input
+        className={styles.test}
         onKeyDown={handleKeyPress}
         ref={inputRef}
         value={taskName}
@@ -75,22 +69,34 @@ export const TaskInput = () => {
         placeholder="Добавить задачу"
         type="text"
       />
-      {dateTime ? (
-        <div className={styles.date}>
-          <CalendarIcon />
-          <span>{convertDateToStr(dateTime)}</span>
-          <Calendar />
-        </div>
-      ) : (
-        <div className={styles.calendarContainer}>
-          <CalendarIcon className={styles.calendar} />
-          <Calendar />
-        </div>
-      )}
 
-      <TaskCategory />
-      <TaskPriority />
-      <ClearIcon onClick={onClickClear} className={styles.cross} />
+      <div className={styles.inputOptions}>
+        {dateTime ? (
+          <div className={styles.date}>
+            <CalendarIcon />
+            <span>{convertDateToStr(dateTime)}</span>
+            <Calendar onAccept={(date) => setDateTime(date)} />
+          </div>
+        ) : (
+          <div className={styles.calendarContainer}>
+            <CalendarIcon className={styles.calendar} />
+            <Calendar onAccept={(date) => setDateTime(date)} />
+          </div>
+        )}
+
+        <TaskCategory
+          onChangeValue={setCategory}
+          defaultValue={category}
+          type="short"
+        />
+        <div>
+          <TaskPriority onChangeValue={setPriority} defaultValue={priority} type="short" />
+        </div>
+
+        <div className={styles.cross}>
+          <ClearIcon onClick={onClickClear} />
+        </div>
+      </div>
     </div>
   );
 };

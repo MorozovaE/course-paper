@@ -3,25 +3,15 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDateTimePicker } from "@mui/x-date-pickers/MobileDateTimePicker";
 
-import { convertDateToUnix } from "../../utils/convertDateToUnix";
-import { useDispatch } from "react-redux";
-import { setDateTime } from "../../store/features/tasksSlice";
-
-export default function Calendar() {
-  const dispatch = useDispatch();
-
-  const onChangeDate = (date) => {
-    dispatch(setDateTime(convertDateToUnix(date)));
-  };
+export default function Calendar({ onAccept }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    
       <MobileDateTimePicker
         openTo="day"
         defaultValue={null}
         type="datetime-local"
-        onAccept={(date) => onChangeDate(date)}
+        onAccept={onAccept}
         sx={{
           width: { sm: 16, md: 16 },
           "& .MuiInputBase-root": {

@@ -1,32 +1,60 @@
 .inputContainer {
-
-  position: relative;
+  background-color: #F3FAFC;
+  border-radius: 8px;
+  align-items: center;
   margin-bottom: 38px;
+  display: flex;
+  flex-direction: row;
 
   .plus {
-    position: absolute;
-    left: 15px;
-    top: 16px;
+    margin-left: 15px;
   }
 
-  .cross {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
+  input {
+    background-color: #F3FAFC;
+    border: none;
+    font-size: 16px;
+    flex-grow: 1;
+
+    padding: 14px;
+    outline: none;
+
+    &::placeholder {
+      color: #B7C8DB;
+      font-size: 16px;
+    }
   }
+}
+
+.cross {
+  cursor: pointer;
+  margin: 0 5px;
+
+  svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.inputOptions {
+  display: flex;
+  align-items: center;
+
 
   .calendarContainer {
-    position: absolute;
-    top: 16px;
-    right: 110px;
-    width: 5px;
-    height: 5px;
+    display: block;
+    margin: 0 5px;
+    width: 16px;
+    height: 16px;
 
     .calendar {
+      display: block;
       position: absolute;
       width: 18px;
+      height: 18px;
       color: #B7C8DB;
+      margin-top: -2px;
     }
 
     div {
@@ -35,7 +63,6 @@
       width: 16px;
       opacity: .1;
       outline: none;
-      position: absolute;
       cursor: pointer;
 
       input {
@@ -48,56 +75,32 @@
 
     }
   }
+}
 
-  .date {
-    position: absolute;
-    top: 10px;
-    font-size: 13px;
-    right: 100px;
-    background-color: #cfe6fd;
-    color: #4A9EEB;
-    padding: 6px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.date {
 
-    svg {
-      width: 20px;
+  font-size: 13px;
+  background-color: #cfe6fd;
+  color: #4A9EEB;
+  padding: 6px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
-      padding-right: 5px;
-    }
+  svg {
+    width: 20px;
 
-    div {
-      cursor: pointer;
-      border: none;
-      width: 100%;
-      opacity: .1;
-      outline: none;
-      position: absolute;
-
-    }
+    padding-right: 5px;
   }
 
-  &>input {
-    background-color: #F3FAFC;
+  div {
+    cursor: pointer;
     border: none;
-    font-size: 16px;
-
-    padding: 14px 0 14px 40px;
-    border-radius: 8px;
     width: 100%;
+    opacity: .1;
     outline: none;
+    position: absolute;
 
-    &::placeholder {
-      color: #B7C8DB;
-      font-size: 16px;
-    }
-
-    &:focus {
-      border: 1.5px solid #abd5fd;
-      background-color: #fff;
-      margin: -1px;
-    }
   }
 }

@@ -2,12 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { taskDataService } from "../../services/task.service.js";
 
 const initialState = {
-  task: {},
+  selectedTask: {}, 
   selectedTaskId: null,
   completed: null,
-  dateTime: null,
-  priority: null,
-  category: null,
   items: [],
 };
 
@@ -43,19 +40,10 @@ export const tasksSlice = createSlice({
   initialState,
   reducers: {
     setSelectedTask: (state, action) => {
-      state.task = action.payload;
+      state.selectedTask = action.payload;
     },
     selectTask: (state, action) => {
       state.selectedTaskId = action.payload;
-    },
-    setDateTime: (state, action) => {
-      state.dateTime = action.payload;
-    },
-    setPriority(state, action) {
-      state.priority = action.payload;
-    },
-    setCategory(state, action) {
-      state.category = action.payload;
     },
     setCompleted(state, action) {
       state.completed = action.payload;
@@ -87,26 +75,16 @@ export const tasksSlice = createSlice({
         };
       })
       .addCase(getTask.fulfilled, (state, action) => {
-        state.task = action.payload;
+        state.selectedTask = action.payload;
       });
   },
 });
 
-export const taskSelector = (state) => state.tasks.task;
+export const taskSelector = (state) => state.tasks.selectedTask;
 export const selectedTaskIdSelector = (state) => state.tasks.selectedTaskId;
 export const tasksSelector = (state) => state.tasks.items;
-export const categorySelector = (state) => state.tasks.category;
-export const dateTimeSelector = (state) => state.tasks.dateTime;
-export const prioritySelector = (state) => state.tasks.priority;
 export const completedSelector = (state) => state.tasks.completed;
 
-export const {
-  selectTask,
-  setCompleted,
-  setSelectedTask,
-  setDateTime,
-  setPriority,
-  setCategory,
-} = tasksSlice.actions;
+export const { selectTask, setCompleted, setSelectedTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

@@ -44,14 +44,25 @@ taskController.editTask = (req, res, next) => {
   const newTask = req.body;
   const id = req.params.taskId;
 
-  Task.findOne({ where: { id }, include: [Priority, List] })
+  Task.findOne({ where: { id } })
     .then((task) => {
       if (task) {
         Object.assign(task, newTask);
 
         task
           .save()
-          .then((task) => res.json(task))
+          .then((task) =>
+            Task.findOne({
+              where: { id: task.id },
+              include: [Priority, List],
+            }).then((task) => {
+              if (task) {
+                res.json(task);
+              } else {
+                res.status(404).send();
+              }
+            })
+          )
           .catch(next);
       } else {
         res.status(404).send();

@@ -49,6 +49,10 @@
         display: flex;
         align-items: center;
 
+        svg{
+          width: 22px;
+          height: 22px;
+        }
         span {
           padding: 5px 10px;
           font-size: 20px;

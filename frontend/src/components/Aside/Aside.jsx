@@ -66,7 +66,7 @@ export const Aside = () => {
 
           <NavLink to="/tasks" className={isActive}>
             <li>
-              <TasksIcon />
+              <TasksIcon className={styles.taskIcon}/>
               <span>Задачи</span>
               <span className={styles.tasksCount}>{itemsCount.tasksCount}</span>
             </li>

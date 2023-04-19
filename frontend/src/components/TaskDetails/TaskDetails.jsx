@@ -1,13 +1,10 @@
 import React from "react";
-
-import styles from "./taskDetails.module.scss";
+import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 
-import { ReactComponent as PriorityFlagIcon } from "../../assets/icons/priorityFlag.svg";
+import styles from "./taskDetails.module.scss";
 import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
 import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg";
-
-import { priorityClasses } from "../../constans";
 import { convertDateToStr } from "../../utils/convetDateToStr";
 import { Checkbox } from "../Checkbox/Checkbox";
 import {
@@ -16,7 +13,7 @@ import {
   taskSelector,
 } from "../../store/features/tasksSlice";
 import {
-  getTask,
+  getAndSelectTask,
   tasksSelector,
   selectedTaskIdSelector,
   setSelectedTask,
@@ -27,20 +24,24 @@ import { TaskPriority } from "../TaskPriority/TaskPriority";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
+
   const selectedTask = useSelector(taskSelector);
   const selectedTaskId = useSelector(selectedTaskIdSelector);
   const items = useSelector(tasksSelector);
 
   React.useEffect(() => {
     selectedTaskId
-      ? dispatch(getTask(selectedTaskId))
+      ? dispatch(getAndSelectTask(selectedTaskId))
       : dispatch(setSelectedTask({}));
   }, [selectedTaskId, items]);
+
+  const saveTaskName = debounce((taskName) => {
+    dispatch(editTask({ id: selectedTaskId, taskObj: { name: taskName } }));
+  }, 1500);
 
   const setDate = (date) => {
     dispatch(editTask({ id: selectedTask.id, taskObj: { dateTime: date } }));
   };
-
   const setCategory = (listId) => {
     dispatch(editTask({ id: selectedTask.id, taskObj: { listId: listId } }));
   };
@@ -48,11 +49,6 @@ export const TaskDetails = () => {
     dispatch(
       editTask({ id: selectedTask.id, taskObj: { priorityId: priorityId } })
     );
-  };
-
-  const deleteHandler = async (e) => {
-    // e.stopPropagation();
-    dispatch(deleteTask(selectedTaskId));
   };
 
   return (
@@ -94,7 +90,11 @@ export const TaskDetails = () => {
             />
           </header>
           <main>
-            <input type="text" defaultValue={selectedTask.name} />
+            <input
+              defaultValue={selectedTask.name}
+              type="text"
+              onChange={(event) => saveTaskName(event.target.value)}
+            />
             <textarea
               rows="40"
               placeholder="введите описание"

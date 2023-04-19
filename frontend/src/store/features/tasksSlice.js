@@ -17,7 +17,7 @@ export const createTask = createAsyncThunk("tasks/create", async (taskObj) => {
   return res.data;
 });
 
-export const getTask = createAsyncThunk("tasks/get", async (id) => {
+export const getAndSelectTask = createAsyncThunk("tasks/get", async (id) => {
   const res = await taskDataService.getById(id);
   return res.data;
 });
@@ -50,7 +50,6 @@ export const tasksSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // qs
     builder
       .addCase(getAllTasks.fulfilled, (state, action) => {
         state.items = action.payload;
@@ -74,7 +73,7 @@ export const tasksSlice = createSlice({
           ...action.payload,
         };
       })
-      .addCase(getTask.fulfilled, (state, action) => {
+      .addCase(getAndSelectTask.fulfilled, (state, action) => {
         state.selectedTask = action.payload;
       });
   },

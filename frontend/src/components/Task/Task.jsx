@@ -18,18 +18,33 @@ import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
+
   const selectedTaskId = useSelector(selectedTaskIdSelector);
+
+  // controlled input
+  const [taskName, setTaskName] = React.useState("");
 
   const deleteHandler = async (e) => {
     e.stopPropagation();
     dispatch(deleteTask(task.id));
   };
 
-  const handleChange = debounce((event) => {
-    dispatch(
-      editTask({ id: selectedTaskId, taskObj: { name: event.target.value } })
-    );
-  }, 1000);
+  // on update with new props
+  React.useEffect(() => {
+    setTaskName(task.name);
+  }, [task.name]); // props
+
+  // when user update input
+  React.useEffect(() => {
+    saveTaskName(selectedTaskId, taskName);
+  }, [taskName]);
+
+  const saveTaskName = React.useCallback(
+    debounce((selectedTaskId, taskName) => {
+      dispatch(editTask({ id: selectedTaskId, taskObj: { name: taskName } }));
+    }, 1000),
+    []
+  );
 
   return (
     <div
@@ -44,8 +59,8 @@ export const Task = ({ task }) => {
         <Checkbox task={task} />
         <input
           type="text"
-          defaultValue={task.name}
-          onChange={(event) => handleChange(event)}
+          value={taskName} // controlled input
+          onChange={(event) => setTaskName(event.target.value)}
           className={styles.text}
         />
       </div>

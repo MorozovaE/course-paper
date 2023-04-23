@@ -11,18 +11,17 @@
 
     &::-webkit-scrollbar {
       height: 1px;
-      width: 4px;
+      width: 5px;
     }
-
     &::-webkit-scrollbar-thumb {
       padding-left: 10px;
       margin-left: 10px;
-      background-color: #c4b5bf;
+      background-color: #b7c8db93;
       border-radius: 9em;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background-color: #818286d7;
+      background-color: #c5c4c4;
     }
   }
 }

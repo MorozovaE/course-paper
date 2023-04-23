@@ -67,6 +67,7 @@
         }
 
       }
+
       .category {
         background-color: #F1F1F1;
         color: #9b9b9b;
@@ -134,6 +135,22 @@
       font-size: 16px;
       color: #9b9b9b;
       resize: none;
+
+      &::-webkit-scrollbar {
+        height: 1px;
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        padding-left: 10px;
+        margin-left: 10px;
+        background-color: #b7c8db93;
+        border-radius: 9em;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #c5c4c4;
+      }
     }
   }
 }

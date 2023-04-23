@@ -2,7 +2,7 @@
   flex-grow: 3;
   flex-basis: 0;
   border-left: 1px solid #E1EFFF;
-  padding: 35px 45px 0 45px;
+  padding: 35px 35px 0 45px;
   box-sizing: border-box;
 
   .headerContainer {
@@ -135,6 +135,7 @@
       font-size: 16px;
       color: #9b9b9b;
       resize: none;
+      padding-right: 10px;
 
       &::-webkit-scrollbar {
         height: 1px;

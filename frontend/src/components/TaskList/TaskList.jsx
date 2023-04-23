@@ -9,7 +9,7 @@ import { getAllTasks, tasksSelector } from "../../store/features/tasksSlice";
 
 export const TaskList = () => {
   const dispatch = useDispatch();
-  const items = useSelector(tasksSelector); 
+  const items = useSelector(tasksSelector);
 
   React.useEffect(() => {
     dispatch(getAllTasks());

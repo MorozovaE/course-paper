@@ -43,7 +43,7 @@ export const Task = ({ task }) => {
     //
     debounce((selectedTaskId, taskName) => {
       dispatch(editTask({ id: selectedTaskId, taskObj: { name: taskName } }));
-    }, 1000),
+    }, 800),
     []
   );
 

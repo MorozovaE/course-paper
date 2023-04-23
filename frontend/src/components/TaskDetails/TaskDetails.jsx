@@ -10,11 +10,9 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import {
   deleteTask,
   editTask,
-  taskSelector,
-} from "../../store/features/tasksSlice";
-import {
   getAndSelectTask,
   tasksSelector,
+  taskSelector,
   selectedTaskIdSelector,
   setSelectedTask,
 } from "../../store/features/tasksSlice";
@@ -24,7 +22,7 @@ import { TaskPriority } from "../TaskPriority/TaskPriority";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
-
+  const [taskName, setTaskName] = React.useState("");
   const selectedTask = useSelector(taskSelector);
   const selectedTaskId = useSelector(selectedTaskIdSelector);
   const items = useSelector(tasksSelector);
@@ -35,9 +33,20 @@ export const TaskDetails = () => {
       : dispatch(setSelectedTask({}));
   }, [selectedTaskId, items]);
 
-  const saveTaskName = debounce((taskName) => {
-    dispatch(editTask({ id: selectedTaskId, taskObj: { name: taskName } }));
-  }, 1500);
+  React.useEffect(() => {
+    setTaskName(selectedTask.name);
+  }, [selectedTask.name]);
+
+  React.useEffect(() => {
+    saveTaskName(selectedTaskId, taskName);
+  }, [taskName]);
+
+  const saveTaskName = React.useCallback(
+    debounce((selectedTaskId, taskName) => {
+      dispatch(editTask({ id: selectedTaskId, taskObj: { name: taskName } }));
+    }, 800),
+    []
+  );
 
   const setDate = (date) => {
     dispatch(editTask({ id: selectedTask.id, taskObj: { dateTime: date } }));
@@ -91,9 +100,9 @@ export const TaskDetails = () => {
           </header>
           <main>
             <input
-              defaultValue={selectedTask.name}
+              value={taskName}
               type="text"
-              onChange={(event) => saveTaskName(event.target.value)}
+              onChange={(event) => setTaskName(event.target.value)}
             />
             <textarea
               rows="40"

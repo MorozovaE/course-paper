@@ -23,6 +23,7 @@ import { TaskPriority } from "../TaskPriority/TaskPriority";
 export const TaskDetails = () => {
   const dispatch = useDispatch();
   const [taskName, setTaskName] = React.useState("");
+  const [taskDesc, setTaskDesc] = React.useState("");
 
   const selectedTask = useSelector(taskSelector);
   const selectedTaskId = useSelector(selectedTaskIdSelector);
@@ -40,7 +41,6 @@ export const TaskDetails = () => {
 
   React.useEffect(() => {
     if (selectedTaskId) saveTaskName(selectedTaskId, taskName);
-    
   }, [taskName]);
 
   const saveTaskName = React.useCallback(
@@ -62,11 +62,25 @@ export const TaskDetails = () => {
     );
   };
 
-  const setTaskDescription = (description) => {
-    dispatch(editTask({ id: selectedTaskId, taskObj: { desc: description } }));
+  React.useEffect(() => {
+    setTaskDesc(selectedTask.desc);
+  }, [selectedTask.desc]);
 
-    console.log(description);
-  };
+  React.useEffect(() => {
+    if (selectedTaskId) setTaskDescription(selectedTaskId, taskDesc);
+  }, [taskDesc]);
+
+  // const setTaskDescription = (selectedTaskId,description) => {
+  //   console.log(description);
+  //   dispatch(editTask({ id: selectedTaskId, taskObj: { desc: description } }));
+  // };
+
+  const setTaskDescription = React.useCallback(
+    debounce((selectedTaskId, taskDesc) => {
+      dispatch(editTask({ id: selectedTaskId, taskObj: { desc: taskDesc } }));
+    }, 800),
+    []
+  );
 
   return (
     <div className={styles.root}>

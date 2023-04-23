@@ -114,9 +114,9 @@ export const TaskDetails = () => {
             />
             <textarea
               rows="40"
-              onChange={(event) => setTaskDescription(event.target.value)}
+              onChange={(e) => setTaskDesc(e.target.value)}
               placeholder="введите описание"
-              defaultValue={selectedTask.desc ? selectedTask.desc : ""}
+              value={taskDesc || ""}
             ></textarea>
           </main>
         </div>

@@ -38,6 +38,7 @@ export const TaskInput = () => {
         listId: category,
       })
     );
+
     resetData();
   };
 

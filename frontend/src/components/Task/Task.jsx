@@ -35,7 +35,7 @@ export const Task = ({ task }) => {
 
   // when user update input
   React.useEffect(() => {
-    if (selectedTaskId) saveTaskName(selectedTaskId, taskName);
+    if (selectedTaskId == task.id) saveTaskName(selectedTaskId, taskName);
   }, [taskName]);
 
   const saveTaskName = React.useCallback(

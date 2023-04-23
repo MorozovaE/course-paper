@@ -40,6 +40,7 @@ export const TaskDetails = () => {
 
   React.useEffect(() => {
     if (selectedTaskId) saveTaskName(selectedTaskId, taskName);
+    
   }, [taskName]);
 
   const saveTaskName = React.useCallback(

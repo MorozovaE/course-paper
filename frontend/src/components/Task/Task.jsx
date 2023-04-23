@@ -18,7 +18,6 @@ import { ReactComponent as BinIcon } from "../../assets/icons/bin.svg";
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
-
   const selectedTaskId = useSelector(selectedTaskIdSelector);
 
   // controlled input
@@ -36,11 +35,10 @@ export const Task = ({ task }) => {
 
   // when user update input
   React.useEffect(() => {
-    saveTaskName(selectedTaskId, taskName);
+    if (selectedTaskId) saveTaskName(selectedTaskId, taskName);
   }, [taskName]);
 
   const saveTaskName = React.useCallback(
-    //
     debounce((selectedTaskId, taskName) => {
       dispatch(editTask({ id: selectedTaskId, taskObj: { name: taskName } }));
     }, 800),

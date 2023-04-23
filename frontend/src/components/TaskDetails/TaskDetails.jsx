@@ -23,6 +23,7 @@ import { TaskPriority } from "../TaskPriority/TaskPriority";
 export const TaskDetails = () => {
   const dispatch = useDispatch();
   const [taskName, setTaskName] = React.useState("");
+
   const selectedTask = useSelector(taskSelector);
   const selectedTaskId = useSelector(selectedTaskIdSelector);
   const items = useSelector(tasksSelector);
@@ -38,7 +39,7 @@ export const TaskDetails = () => {
   }, [selectedTask.name]);
 
   React.useEffect(() => {
-    saveTaskName(selectedTaskId, taskName);
+    if (selectedTaskId) saveTaskName(selectedTaskId, taskName);
   }, [taskName]);
 
   const saveTaskName = React.useCallback(
@@ -58,6 +59,12 @@ export const TaskDetails = () => {
     dispatch(
       editTask({ id: selectedTask.id, taskObj: { priorityId: priorityId } })
     );
+  };
+
+  const setTaskDescription = (description) => {
+    dispatch(editTask({ id: selectedTaskId, taskObj: { desc: description } }));
+
+    console.log(description);
   };
 
   return (
@@ -100,12 +107,13 @@ export const TaskDetails = () => {
           </header>
           <main>
             <input
-              value={taskName}
+              value={taskName || ""}
               type="text"
               onChange={(event) => setTaskName(event.target.value)}
             />
             <textarea
               rows="40"
+              onChange={(event) => setTaskDescription(event.target.value)}
               placeholder="введите описание"
               defaultValue={selectedTask.desc ? selectedTask.desc : ""}
             ></textarea>

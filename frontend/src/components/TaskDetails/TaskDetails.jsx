@@ -70,11 +70,6 @@ export const TaskDetails = () => {
     if (selectedTaskId) setTaskDescription(selectedTaskId, taskDesc);
   }, [taskDesc]);
 
-  // const setTaskDescription = (selectedTaskId,description) => {
-  //   console.log(description);
-  //   dispatch(editTask({ id: selectedTaskId, taskObj: { desc: description } }));
-  // };
-
   const setTaskDescription = React.useCallback(
     debounce((selectedTaskId, taskDesc) => {
       dispatch(editTask({ id: selectedTaskId, taskObj: { desc: taskDesc } }));

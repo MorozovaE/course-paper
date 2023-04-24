@@ -22,7 +22,3 @@ export const TaskModel = (sequelize, type) => {
     }
   });
 };
-
-// TODO:
-// list
-// priority

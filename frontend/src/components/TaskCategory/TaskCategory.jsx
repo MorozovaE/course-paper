@@ -47,9 +47,9 @@ export const TaskCategory = ({ onChangeValue, defaultValue, type }) => {
 
       {type == "short" && (
         <CategoryIcon
-          className={
-            `${styles.categoryIcon} ${defaultValue == null ? styles.default : styles.active}`
-          }
+          className={`${styles.categoryIcon} ${
+            defaultValue == null ? styles.default : styles.active
+          }`}
           onClick={(e) => showList(e)}
         />
       )}
@@ -57,7 +57,7 @@ export const TaskCategory = ({ onChangeValue, defaultValue, type }) => {
       {type == "long" && (
         <div className={styles.categoryContainer} onClick={(e) => showList(e)}>
           <CategoryIcon />
-          <span>{defaultValue && list[defaultValue - 1].name}</span>
+          <span>{list[defaultValue - 1] && list[defaultValue - 1].name}</span>
         </div>
       )}
     </div>

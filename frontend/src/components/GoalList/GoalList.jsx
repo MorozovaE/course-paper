@@ -10,6 +10,8 @@ export const GoalList = () => {
         <div>
           <span>Цели</span>
           <button>
+
+          {/* change */}
             <svg
               height="18px"
               version="1.1"

@@ -9,8 +9,11 @@ export const Reward = () => {
   return (
     <div className={styles.root}>
       <img src={ItalyImg} alt="" />
-      <span>Поехать в Италию</span>
-      <ProgressBar className={styles.progress} now={60} />
+      <span className={styles.rewardName}>Поехать в Италию</span>
+      <div className={styles.progressbarContainer}>
+        <ProgressBar className={styles.progress} now={60} />
+        <span className={styles.progressCount}>27/30</span>
+      </div>
       {/* <ProgressBar variant="success" className={styles.progress} now={10} /> */}
     </div>
   );

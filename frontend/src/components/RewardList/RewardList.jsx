@@ -1,6 +1,4 @@
 import React from "react";
-import { Uploader } from "uploader"; // Installed by "react-uploader".
-import { UploadButton } from "react-uploader";
 
 import styles from "./rewardList.module.scss";
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus.svg";
@@ -9,56 +7,27 @@ import { ReactComponent as SortIcon } from "../../assets/icons/sort.svg";
 import { ReactComponent as DownloadIcon } from "../../assets/icons/downloadArrow.svg";
 
 import { Reward } from "../Reward/Reward";
+import { CreateRewardModal } from "../CreateRewardModal/CreateRewardModal";
 
 export const RewardList = () => {
-  const [popupIsOpen, setPopupIsOpen] = React.useState(false);
-  const uploader = Uploader({
-    apiKey: "free", // Get production API keys from Upload.io
-  });
+  const [modalActive, setModalActive] = React.useState(false);
+  // const inputRef = React.useRef();
+  // const [inputRewardName, setInputRewardName] = React.useState("");
 
-  const addReward = () => {
-    setPopupIsOpen(!popupIsOpen);
-  };
   return (
     <div className={styles.root}>
       <header>
         <div className={styles.caption}>
           <span>Награды</span>
-          <div className={styles.addRewardbBtn} onClick={addReward}>
+          <div
+            className={styles.addRewardbBtn}
+            onClick={() => setModalActive(true)}
+          >
             <PlusIcon />
             Добавить
           </div>
-
-          {popupIsOpen && (
-            <div className={styles.rewardModalWindow}>
-              <div className={styles.fillContainer}>
-                <input type="text" placeholder="Введите название награды" />
-
-                <UploadButton
-                  className={styles.unloadImgButn}
-                  uploader={uploader}
-                  onComplete={(files) =>
-                    console.log(files.map((x) => x.fileUrl).join("\n"))
-                  }
-                >
-                  {({ onClick }) => (
-                    <>
-                      <button onClick={onClick}>
-                        <DownloadIcon /> Загрузить картинку
-                      </button>
-                    </>
-                  )}
-                </UploadButton>
-              </div>
-
-              <div className={styles.createRewardBtn}>
-                <PlusIcon />
-               <span>Создать</span> 
-              </div>
-            </div>
-          )}
+          <CreateRewardModal active={modalActive} setActive={setModalActive} />
         </div>
-
         <div>
           <SearchIcon />
           <SortIcon />

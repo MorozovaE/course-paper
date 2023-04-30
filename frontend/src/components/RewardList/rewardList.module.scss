@@ -11,7 +11,7 @@
     .caption {
       display: flex;
 
-      span {
+      & > span {
         font-size: 24px;
         margin-right: 17px;
       }

@@ -90,11 +90,42 @@
       }
 
       .modalRewardImgContainer {
+
         grid-area: img;
-        
-        div {
+
+        .dropArea {
+          text-align: center;
+          justify-content: center;
+          display: flex;
+          margin-top: 14px;
+          color: #B9B8B8;
+          font-size: 14px;
           margin-bottom: 25px;
-          border: 2px dotted #E3E3E3;
+          border: 2px dashed #E3E3E3;
+          width: 200px;
+          height: 180px;
+          align-items: center;
+          transition: 0.2s;
+
+          div.image {
+            height: 100%;
+            width: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+
+          &:hover {
+            background-color: #f0f0f0;
+          }
+
+
+          &.uploaded {
+            color: #ffffff;
+            background-color: #ffffff;
+            border: 2px dashed rgb(255, 255, 255);
+          }
+
         }
       }
 
@@ -110,6 +141,7 @@
           color: #4A9EEB;
           margin-right: 8px;
           padding: 8px 20px;
+          background-color: #fff;
         }
 
         .createBtn {

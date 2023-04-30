@@ -1,13 +1,15 @@
 import express from "express";
 import { taskController } from "../controllers/task-controller.js";
 
-export const taskRouter = express.Router()
+export const taskRouter = express.Router();
 
-taskRouter.route("/")
+taskRouter
+  .route("/")
   .get(taskController.getTasks)
-  .post(taskController.createTask)
+  .post(taskController.createTask);
 
-taskRouter.route("/:taskId")
+taskRouter
+  .route("/:taskId")
   .get(taskController.getTask)
   .delete(taskController.deleteTask)
-  .put(taskController.editTask)
+  .put(taskController.editTask);

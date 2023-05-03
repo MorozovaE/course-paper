@@ -1,11 +1,29 @@
 import React from "react";
 
 import styles from "./createRewardModal.module.scss";
+import { useDispatch } from "react-redux";
+import { createReward } from "../../store/features/rewardsSlice";
 
 export const CreateRewardModal = ({ active, setActive }) => {
+  const dispatch = useDispatch();
   const [_, setDrag] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [preview, setPreview] = React.useState();
+
+  const [rewardName, setRewardName] = React.useState("");
+  const [rewardDesc, setRewardDesc] = React.useState("");
+
+  const addReward = () => {
+    dispatch(
+      createReward({
+        name: rewardName,
+        desc: rewardDesc,
+        completed: false,
+      })
+    );
+
+    cancelHandler();
+  };
 
   React.useEffect(() => {
     if (!file) {
@@ -37,9 +55,10 @@ export const CreateRewardModal = ({ active, setActive }) => {
   };
 
   const cancelHandler = () => {
-    //value from input and textarea
     setActive(false);
     setFile(null);
+    setRewardName("");
+    setRewardDesc("");
   };
 
   return (
@@ -62,6 +81,8 @@ export const CreateRewardModal = ({ active, setActive }) => {
           <div className={styles.modalRewardNameContainer}>
             <h4>Название</h4>
             <input
+              value={rewardName}
+              onChange={(e) => setRewardName(e.target.value)}
               type="text"
               placeholder="например, IPhone или Galaxy Watch 5"
             />
@@ -70,6 +91,8 @@ export const CreateRewardModal = ({ active, setActive }) => {
           <div className={styles.modalRewardDescContainer}>
             <h4>Описание</h4>
             <textarea
+              value={rewardDesc}
+              onChange={(e) => setRewardDesc(e.target.value)}
               name=""
               id=""
               cols="30"
@@ -105,7 +128,9 @@ export const CreateRewardModal = ({ active, setActive }) => {
             >
               Отмена
             </button>
-            <button className={styles.createBtn}>Создать</button>
+            <button onClick={addReward} className={styles.createBtn}>
+              Создать
+            </button>
           </div>
         </div>
       </div>

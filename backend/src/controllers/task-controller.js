@@ -12,7 +12,7 @@ taskController.getTasks = (req, res, next) => {
 
 taskController.createTask = (req, res, next) => {
   Task.create(req.body)
-    .then((task) =>
+    .then((task) => {
       Task.findOne({ where: { id: task.id }, include: [Priority, List] }).then(
         (task) => {
           if (task) {
@@ -21,8 +21,8 @@ taskController.createTask = (req, res, next) => {
             res.status(404).send();
           }
         }
-      )
-    )
+      );
+    })
     .catch(next);
 };
 

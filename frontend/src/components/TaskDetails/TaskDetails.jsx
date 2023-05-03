@@ -67,10 +67,10 @@ export const TaskDetails = () => {
   }, [selectedTask.desc]);
 
   React.useEffect(() => {
-    if (selectedTaskId) setTaskDescription(selectedTaskId, taskDesc);
+    if (selectedTaskId) saveTaskDesc(selectedTaskId, taskDesc);
   }, [taskDesc]);
 
-  const setTaskDescription = React.useCallback(
+  const saveTaskDesc = React.useCallback(
     debounce((selectedTaskId, taskDesc) => {
       dispatch(editTask({ id: selectedTaskId, taskObj: { desc: taskDesc } }));
     }, 800),

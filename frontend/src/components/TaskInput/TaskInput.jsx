@@ -62,7 +62,7 @@ export const TaskInput = () => {
       <PlusIcon onClick={addTask} className={styles.plus} fill="#B7C8DB" />
 
       <input
-        className={styles.test}
+        className={styles.createTaskInput}
         onKeyDown={handleKeyPress}
         ref={inputRef}
         value={taskName}
@@ -91,7 +91,11 @@ export const TaskInput = () => {
           type="short"
         />
         <div>
-          <TaskPriority onChangeValue={setPriority} defaultValue={priority} type="short" />
+          <TaskPriority
+            onChangeValue={setPriority}
+            defaultValue={priority}
+            type="short"
+          />
         </div>
 
         <div className={styles.cross}>

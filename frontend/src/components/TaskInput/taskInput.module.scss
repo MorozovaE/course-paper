@@ -10,7 +10,7 @@
     margin-left: 15px;
   }
 
-  input {
+  .createTaskInput {
     background-color: #F3FAFC;
     border: none;
     font-size: 16px;
@@ -97,7 +97,6 @@
   div {
     cursor: pointer;
     border: none;
-    width: 100%;
     opacity: .1;
     outline: none;
     position: absolute;

@@ -19,14 +19,11 @@ class TaskDataService {
   editTask(id, taskObj) {
     return http.put(`/tasks/${id}`, taskObj);
   }
-  getList() { // wtf
-    return http.get("/lists");
-  }
   getPriorities() {
     return http.get(`/priorities`);
   }
-  getCategoryList(){ // wtf
-    return http.get("/lists")
+  getCategoryList() {
+    return http.get("/lists");
   }
 }
 

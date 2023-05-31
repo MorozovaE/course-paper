@@ -4,9 +4,8 @@ import styles from "./rewardList.module.scss";
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort.svg";
-
 import { Reward } from "../Reward/Reward";
-import { CreateRewardModal } from "../CreateRewardModal/CreateRewardModal";
+import { RewardModal } from "../RewardModal/RewardModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllRewards,
@@ -34,7 +33,7 @@ export const RewardList = () => {
             <PlusIcon />
             Добавить
           </div>
-          <CreateRewardModal active={modalActive} setActive={setModalActive} />
+          <RewardModal active={modalActive} setActive={setModalActive} />
         </div>
 
         <div>

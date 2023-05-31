@@ -1,5 +1,98 @@
-.root{
+.root {
   flex-grow: 3;
   flex-basis: 0;
   border-left: 1px solid #E1EFFF;
+  padding: 35px 35px 0 45px;
+  box-sizing: border-box;
+
+  .rewardDetailsContainer {
+
+    &>header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 52px;
+
+      .progressbarContainer {
+        max-width: 460px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .progress {
+          max-width: 450px;
+          width: 100%;
+          margin-right: 15px;
+        }
+      }
+
+      .bin {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+
+    main {
+      display: grid;
+      grid-template-areas:
+        "image caption"
+        "image desc";
+      grid-template-columns: 260px 1fr;
+
+      .image {
+        grid-area: image;
+        width: 240px;
+        height: 240px;
+        border-radius: 5px;
+        background-size: cover;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      &>input {
+        font-size: 24px;
+        grid-area: caption;
+        border: none;
+        outline: none;
+        margin-bottom: 10px;
+
+        &::placeholder {
+          color: #a6a5a5;
+          font-size: 18px;
+        }
+      }
+
+      &>textarea {
+        grid-area: desc;
+        resize: none;
+        border: none;
+        outline: none;
+        height: 80vh;
+
+        &::-webkit-scrollbar {
+          height: 1px;
+          width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          padding-left: 10px;
+          margin-left: 10px;
+          background-color: #b7c8db93;
+          border-radius: 9em;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: #c5c4c4;
+        }
+
+        &::placeholder {
+          color: #a6a5a5;
+          font-size: 14px;
+        }
+      }
+
+    }
+  }
 }

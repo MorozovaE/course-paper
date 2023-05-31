@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+
+import styles from "./goalDetail.module.scss";
 
 export const GoalDetails = () => {
   return (
-    <div>Goal Details</div>
-  )
-}
+    <div className={styles.root}>
+      Goal Details
+    </div>
+  );
+};

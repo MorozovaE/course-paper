@@ -1,6 +1,7 @@
 import React from "react";
+
 import styles from "./checkbox.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editTask } from "../../store/features/tasksSlice";
 
 export const Checkbox = ({ task }) => {

@@ -1,48 +1,41 @@
 import React from "react";
 
-import rewardsImg from "../../assets/img/dog.png";
 import styles from "./goal.module.scss";
-import { Checkbox } from "../Checkbox/Checkbox";
 
-export const Goal = () => {
+export const Goal = ({ goal }) => {
   return (
     <div className={styles.root}>
       <div className={styles.goalContainer}>
-        <h1>Устроиться на работу</h1>
-
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam quam
-          rerum qui repellat consequatur doloremque pariatur porro
-          exercitationem facilis reprehenderit earum nam rem, laudantium
-          cupiditate? Repellendus aliquam accusantium ut quis!
-        </p>
-
-        <h2>Следующие задачи:</h2>
+        <span className={styles.goalName}>{goal.name}</span>
+        <p>{goal.desc}</p>
+        <span className={styles.taskCaption}>Следующие задачи:</span>
         <ul>
-          <li>
-            {/* <Checkbox /> */}
-            <span>Text1</span>
-          </li>
-          <li>
-            {/* <Checkbox /> */}
-            <span>Text2</span>
-          </li>
-          <li>
-            {/* <Checkbox /> */}
-            <span>Text3</span>
-          </li>
+          {goal.Tasks.map((task, index) => (
+            <li key={index}>{task.name}</li>
+          ))}
         </ul>
 
-        <label >
-
-          <progress className={styles.progressBar} max="100" value="70"></progress>
+        <label>
+          <progress
+            className={styles.progressBar}
+            max="100"
+            value="70"
+          ></progress>
+          <span>27/60</span>
         </label>
       </div>
 
       <div className={styles.rewardContainer}>
-        <h3>Награда:</h3>
-        <img src={rewardsImg} alt="" />
-        <span>Купить собаку</span>
+        <span>Награда:</span>
+        <div
+          className={styles.rewardImage}
+          style={{
+            backgroundImage: `url(${goal.Reward && goal.Reward.imageUrl})`,
+          }}
+        ></div>
+        <span className={styles.rewardName}>
+          {goal.Reward && goal.Reward.name}
+        </span>
       </div>
     </div>
   );

@@ -1,50 +1,86 @@
-.root{
+.root {
   display: flex;
-  max-width: 800px;
-  width: 100%;
+  max-height: 300px;
+  height: 100%;
   border-bottom: 1px solid #D8E6F3;
-  .goalContainer{
-    max-width: 600px;
+  margin-top: 20px;
+
+  .goalContainer {
     width: 100%;
-    h1{
-      font-size: 20px;
-      font-weight: normal;
-      margin-bottom: 20px;
-    }
-    p{
+
+    &>p {
       font-size: 13px;
       color: #9b9b9b;
-      margin-bottom: 20px;
-    }
-    h2{
-      font-weight: normal;
-      font-size: 18px;
-      margin-bottom: 18px;
+      margin: 15px 0;
+      width: 85%;
+      height: 55px;
+      overflow: hidden;
     }
 
-    ul{
-      li{
+    .goalName {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .taskCaption {
+      font-size: 19px;
+      margin-bottom: 20px;
+    }
+
+    &>ul {
+      height: 85px;
+      padding: 0;
+      margin: 10px;
+
+      li {
         display: flex;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
       }
     }
-    label{
-      .progressBar{
-        margin-bottom: 20px;
-        max-width: 600px;
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+
+      .progressBar {
+        max-width: 320px;
         width: 100%;
+      }
+
+      &>span {
+        margin-left: 15px;
+        font-size: 14px;
+        color: #9b9b9b
       }
     }
   }
-  .rewardContainer{
+
+  .rewardContainer {
     display: flex;
     flex-direction: column;
 
-    h3{
+    &>span {
       margin-bottom: 15px;
+      font-size: 20px;
     }
-    img{
-      margin-bottom: 15px;
+
+    .rewardImage {
+      border-radius: 5px;
+      width: 180px;
+      height: 180px;
+      background-size: cover;
+      margin-bottom: 10px;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .rewardName {
+      font-size: 16px;
     }
   }
 }

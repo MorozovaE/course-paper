@@ -51,6 +51,8 @@
         cursor: pointer;
         display: flex;
         align-items: center;
+        border-radius: 6px;
+        margin-bottom: 5px;
 
         svg {
           width: 22px;
@@ -86,7 +88,6 @@
 
         &:hover {
           background-color: #4a9eeb30;
-          border-radius: 6px;
           color: black;
         }
 

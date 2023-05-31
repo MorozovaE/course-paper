@@ -1,10 +1,11 @@
 import React from "react";
+import Calendar from "../Calendar/Calendar";
+
+import styles from "./taskInput.module.scss";
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus.svg";
 import { ReactComponent as CalendarIcon } from "../../assets/icons/calendar.svg";
 import { ReactComponent as ClearIcon } from "../../assets/icons/cross.svg";
-import styles from "./taskInput.module.scss";
 
-import Calendar from "../Calendar/Calendar";
 import { useDispatch } from "react-redux";
 import { TaskPriority } from "../TaskPriority/TaskPriority";
 import { TaskCategory } from "../TaskCategory/TaskCategory";

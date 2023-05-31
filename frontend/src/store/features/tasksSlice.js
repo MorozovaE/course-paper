@@ -12,6 +12,7 @@ export const getAllTasks = createAsyncThunk("tasks/getAll", async () => {
   const res = await taskDataService.getAll();
   return res.data.reverse();
 });
+
 export const createTask = createAsyncThunk("tasks/create", async (taskObj) => {
   const res = await taskDataService.createTask(taskObj);
   return res.data;
@@ -80,8 +81,8 @@ export const tasksSlice = createSlice({
 });
 
 export const taskSelector = (state) => state.tasks.selectedTask;
-export const selectedTaskIdSelector = (state) => state.tasks.selectedTaskId;
 export const tasksSelector = (state) => state.tasks.items;
+export const selectedTaskIdSelector = (state) => state.tasks.selectedTaskId;
 export const completedSelector = (state) => state.tasks.completed;
 
 export const { selectTask, setCompleted, setSelectedTask } = tasksSlice.actions;

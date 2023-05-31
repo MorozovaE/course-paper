@@ -1,12 +1,21 @@
 .root {
-  max-width: 180px;
+  max-width: 225px;
+  height: 245px;
   width: 100%;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  margin: 0 40px 45px 0;
 
   .rewardName {
     font-size: 16px;
-    margin: 7px 0 5px 0;
+    margin: 20px 0 5px 0;
+    overflow: hidden;
+  }
+
+  .emptyName {
+    color: #a6a5a5;
+    margin: 20px 0 5px 0;
+
   }
 
   .progressbarContainer {
@@ -21,14 +30,20 @@
       margin-right: 5px;
 
     }
-    .progressCount{
+
+    .progressCount {
       font-size: 13px;
       color: #939393;
-     
+
     }
   }
 
-  img {
-    border-radius: 7px;
+  div.image {
+    border-radius: 5px;
+    width: 230px;
+    height: 230px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 }

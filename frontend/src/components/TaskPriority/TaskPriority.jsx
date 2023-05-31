@@ -8,13 +8,13 @@ import { taskDataService } from "../../services/task.service";
 export const TaskPriority = ({ onChangeValue, defaultValue, type }) => {
   const [priorities, setPriorities] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
-
+  
   const getPriorities = () => {
     taskDataService.getPriorities().then((response) => {
       setPriorities(response.data);
     });
   };
-  
+
   const showPriority = (e) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
@@ -65,14 +65,21 @@ export const TaskPriority = ({ onChangeValue, defaultValue, type }) => {
 
       {type == "long" && (
         <div
-          className={defaultValue ? `${styles.longContainer} ${styles[priorityClasses[defaultValue]]}` : styles.longDefault }
+          className={
+            defaultValue
+              ? `${styles.longContainer} ${
+                  styles[priorityClasses[defaultValue]]
+                }`
+              : styles.longDefault
+          }
           onClick={(e) => showPriority(e)}
         >
           <PriorityFlagIcon />
-          <span>{priorities[defaultValue - 1] && priorities[defaultValue - 1].name} </span>
+          <span>
+            {priorities[defaultValue - 1] && priorities[defaultValue - 1].name}{" "}
+          </span>
         </div>
       )}
-    
     </div>
   );
 };

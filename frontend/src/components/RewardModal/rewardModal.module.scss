@@ -1,0 +1,172 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.31);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+
+  }
+
+  .modalContent {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.123);
+    margin-top: -100px;
+    max-width: 550px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #fff;
+    transform: scale(0.8);
+    transition: 0.3s all;
+
+    &.active {
+      transform: scale(1);
+    }
+
+    .modalHeader {
+      border-bottom: 1px solid #d5d5d5;
+      padding: 32px 30px 15px 32px;
+
+      h3 {
+        font-size: 24px;
+
+      }
+    }
+
+    .modalBody {
+      display: grid;
+      grid-template-areas:
+        "name img"
+        "desc img"
+        ". btns";
+      grid-template-rows: 130px 2fr;
+      padding: 32px 30px 15px 32px;
+
+      h4 {
+        font-size: 20px;
+      }
+
+      input,
+      textarea {
+        margin-top: 6px;
+        width: 100%;
+        max-width: 265px;
+        padding: 8px 15px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        background-color: #ededed;
+
+        &::placeholder {
+          font-size: 14px;
+        }
+      }
+
+      .modalRewardNameContainer {
+        grid-area: name;
+        margin-right: 30px;
+        margin-bottom: 30px;
+
+        .empty {
+          color: red;
+          font-size: 14px;
+        }
+
+      }
+
+      .modalRewardDescContainer {
+        margin-right: 30px;
+        grid-area: desc;
+
+        textarea {
+          resize: none;
+        }
+      }
+
+      .modalRewardImgContainer {
+        grid-area: img;
+        margin-bottom: 25px;
+
+        .dropArea {
+          text-align: center;
+          justify-content: center;
+          display: flex;
+          margin-top: 14px;
+          color: #B9B8B8;
+          font-size: 14px;
+          border: 2px dashed #E3E3E3;
+          width: 200px;
+          height: 180px;
+          align-items: center;
+          transition: 0.2s;
+
+          div.image {
+            height: 100%;
+            width: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+
+          &:hover {
+            background-color: #f0f0f0;
+          }
+
+
+          &.uploaded {
+            color: #ffffff;
+            background-color: #ffffff;
+            border: 2px dashed rgb(255, 255, 255);
+          }
+
+        }
+
+        .empty {
+          color: red;
+          font-size: 14px;
+        }
+      }
+
+      .buttonsContainer {
+        grid-area: btns;
+
+        button {
+          border-radius: 8px;
+        }
+
+        .cancelBtn {
+          border: 1px solid #4A9EEB;
+          color: #4A9EEB;
+          margin-right: 8px;
+          padding: 8px 20px;
+          background-color: #fff;
+        }
+
+        .createBtn {
+          background-color: #4A9EEB;
+          border: none;
+          color: #fff;
+          padding: 9px 20px;
+
+          &:active {
+            background-color: #77aada;
+          }
+
+          &:hover {
+            background-color: #5aa5eb;
+
+          }
+        }
+      }
+    }
+  }
+}

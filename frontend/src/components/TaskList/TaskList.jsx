@@ -1,7 +1,7 @@
 import React from "react";
 
-import { TaskListHeader } from "../TaskListHeader/TaskListHeader";
 import styles from "./taskList.module.scss";
+import { TaskListHeader } from "../TaskListHeader/TaskListHeader";
 import { Task } from "../Task/Task";
 import { TaskInput } from "../TaskInput/TaskInput";
 import { useDispatch, useSelector } from "react-redux";

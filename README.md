@@ -1,7 +1,5 @@
 # Front end Pet Project (Course paper)
 
----
-
 ## Preview
 
 ![Website preview](assets/preview.png)
